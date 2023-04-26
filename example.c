@@ -2,20 +2,19 @@
 ** EPITECH PROJECT, 2023
 ** my_idt1
 ** File description:
-** main.c
+** example.c
 */
 
 #include <SFML/Graphics.h>
 #include <SFML/System.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
-#include "../include/my.h"
+#include <SFML/OpenGL.h>
+#include <SFML/GL.h>
+#include "include/my.h"
 
-/*
 int main(void)
 {
     sfEvent event = {0};
-    char *filepath = "../mess/tom_map";
+    char *filepath = "./example_config";
     my_idt1 *world = create_world(filepath, DANTE, sfKeyR);
     sfVideoMode mode = {world->map.opengl_size.x, world->map.opengl_size.y, 32};
     sfRenderWindow *window = sfRenderWindow_create(mode, "it's doomsday",
@@ -39,4 +38,3 @@ int main(void)
     sfRenderWindow_destroy(window);
     return (0);
 }
-*/
