@@ -1,7 +1,7 @@
 # my_idt1
 
 Prototype of id Tech 1 engine: move around in a pseudo-3D world, using x, y and z axis. <br>
-Create a world more easily using a config file, a example is available below.
+Create a world more easily using a config file, a example is available below. <br>
 The rendering is made using the CSFML library and a bit of OpenGL.
 
 ## Compilation
