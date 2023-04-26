@@ -13,9 +13,9 @@
 
 int main(void)
 {
-    sfEvent event = {0};
     char *filepath = "./example_config";
-    my_idt1 *world = create_world(filepath, DANTE, sfKeyR);
+    sfEvent event = {0};
+    my_idt1 *world = create_world(filepath, RAW_CONFIG, sfKeyR);
     sfVideoMode mode = {world->map.opengl_size.x, world->map.opengl_size.y, 32};
     sfRenderWindow *window = sfRenderWindow_create(mode, "it's doomsday",
     sfDefaultStyle, NULL);
