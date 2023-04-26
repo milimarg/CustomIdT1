@@ -17,7 +17,6 @@ SRC	=	src/lib/my_str_to_word_array.c \
 		src/move/move_strafe.c \
 		src/parser/convert_dante_to_config.c \
 		src/parser/parser.c \
-		src/main.c \
 		src/world_handler.c \
 		src/reload_world.c \
 		src/walls.c \
