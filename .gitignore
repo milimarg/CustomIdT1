@@ -1,0 +1,5 @@
+my_idt1
+3d_config
+.idea
+*.o
+*.a
