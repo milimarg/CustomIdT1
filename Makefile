@@ -28,8 +28,6 @@ OBJ	=	$(SRC:.c=.o)
 
 NAME	=	libmy-idt1.a
 
-GRAPHICS	=	-lGL -lGLU -lm -lcsfml-graphics -lcsfml-window -lcsfml-system
-
 all: $(NAME)
 
 $(NAME): $(OBJ)
