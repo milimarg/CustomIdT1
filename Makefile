@@ -6,8 +6,8 @@
 ##
 
 SRC	=	src/lib/my_str_to_word_array.c \
-        src/lib/lib.c \
-        src/lib/utils.c \
+		src/lib/lib.c \
+        	src/lib/utils.c \
 		src/draw/draw.c \
 		src/draw/draw_wall.c \
 		src/draw/points.c \
@@ -25,7 +25,7 @@ SRC	=	src/lib/my_str_to_word_array.c \
 
 OBJ	=	$(SRC:.c=.o)
 
-NAME	=	libmy-idt1.a
+NAME	=	libidt1.a
 
 all: $(NAME)
 
