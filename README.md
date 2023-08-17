@@ -8,7 +8,7 @@ The rendering is made using the CSFML library and a bit of OpenGL.
 
 ```shell
 make -C ./CustomIdT1/
-gcc main.c -o CustomIdT1 -L./CustomIdT1/ -lmy-idt1 -lcsfml-graphics -lcsfml-window -lcsfml-system -lGL -lGLU -lm
+gcc main.c -L./CustomIdT1/ -lidt1 -lcsfml-graphics -lcsfml-window -lcsfml-system -lGL -lGLU -lm
 ```
 
 ## Config file
