@@ -22,7 +22,7 @@ int *delta_x, my_idt1 *world)
 }
 
 static void draw_surfaces(my_idt1 *world, int s_and_x[2], int y_array[2],
-sfColor color)
+id_Color color)
 {
     int s = s_and_x[0];
     int x = s_and_x[1];
@@ -56,7 +56,7 @@ static int skip_surface_bottom_top(my_idt1 *world, int s_and_x[], int y[2])
     return (0);
 }
 
-void draw_wall(coordinates_wall *wall, sfColor color, int s, my_idt1 *world)
+void draw_wall(coordinates_wall *wall, id_Color color, int s, my_idt1 *world)
 {
     int delta_bottom = wall->bottom2 - wall->bottom1;
     int delta_top = wall->top2 - wall->top1;
@@ -80,9 +80,9 @@ void draw_wall(coordinates_wall *wall, sfColor color, int s, my_idt1 *world)
     }
 }
 
-void draw_one_wall(my_idt1 *world, int l, int s, Vec3 *wpos)
+void draw_one_wall(my_idt1 *world, int l, int s, id_Vec3 *wpos)
 {
-    Vec2 *one_two = (Vec2 *)malloc(sizeof(Vec2) * 2);
+    id_Vec2 *one_two = (id_Vec2 *)malloc(sizeof(id_Vec2) * 2);
     coordinates_wall wall = {0};
 
     for (int w = 0; w < world->sectors[s]->walls_nb; w++) {

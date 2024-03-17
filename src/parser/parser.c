@@ -36,8 +36,8 @@ void get_line_info(int index, my_idt1 *world, char *buffer)
         output = my_str_to_word_array(buffer);
         check_parameters_are_right(output);
         fill_sector(world->sectors[index - 1], RECTANGLE,
-        &(Vec3){atoi(output[1]), atoi(output[2]),
-        atoi(output[3])}, &(Vec3){atoi(output[4]),
+        &(id_Vec3){atoi(output[1]), atoi(output[2]),
+        atoi(output[3])}, &(id_Vec3){atoi(output[4]),
         atoi(output[5]), atoi(output[6])});
     }
 }

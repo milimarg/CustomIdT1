@@ -13,19 +13,18 @@
 #include <SFML/System.h>
 #include "../include/my.h"
 
-void set_map_infos(my_idt1 *world, map_type type, sfKeyCode reload_key)
+static void set_map_infos(my_idt1 *world, map_type type)
 {
     world->map.pixel_scale = 8;
-    world->map.win_size = (sfVector2f){800, 600};
+    world->map.win_size = (id_Vec2){800, 600};
     world->map.opengl_size.x = world->map.win_size.x * world->map.pixel_scale;
     world->map.opengl_size.y = world->map.win_size.y * world->map.pixel_scale;
     world->map.type = type;
-    world->map.reload_key = reload_key;
     if (world->map.type == DANTE)
         convert_dante_to_config(world->filepath);
 }
 
-my_idt1 *create_world(char *filepath, map_type type, sfKeyCode reload_key)
+my_idt1 *create_world(char *filepath, map_type type)
 {
     my_idt1 *world = (my_idt1 *)malloc(sizeof(my_idt1));
     world->pre_cos = (double *)malloc(sizeof(double) * 360);
@@ -38,7 +37,7 @@ my_idt1 *create_world(char *filepath, map_type type, sfKeyCode reload_key)
     world->points = sfVertexArray_create();
     world->no_spam_key = 0;
     world->filepath = filepath;
-    set_map_infos(world, type, reload_key);
+    set_map_infos(world, type);
     if (parse_file(world) == 1)
         return NULL;
     return (world);
@@ -59,7 +58,7 @@ void destroy_world(my_idt1 *world)
 
 void display_world(my_idt1 *world)
 {
-    Vec3 *wpos = (Vec3 *)malloc(sizeof(Vec3) * 4);
+    id_Vec3 *wpos = (id_Vec3 *)malloc(sizeof(id_Vec3) * 4);
 
     sort_sectors(world);
     for (int s = 0; s < world->sectors_nb; s++) {

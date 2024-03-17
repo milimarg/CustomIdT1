@@ -11,7 +11,7 @@
 #include <SFML/Graphics.h>
 #include "../include/my.h"
 
-static sfIntRect *set_values_for_rectangle(int *walls_nb, Vec3 *size, Vec3 *pos)
+static sfIntRect *set_values_for_rectangle(int *walls_nb, id_Vec3 *size, id_Vec3 *pos)
 {
     sfIntRect *rect = NULL;
 
@@ -28,7 +28,7 @@ static sfIntRect *set_values_for_rectangle(int *walls_nb, Vec3 *size, Vec3 *pos)
 }
 
 static void fill_walls_info(sectors_t *sector, sfIntRect *rect,
-sfColor wall_color[2], int walls_nb)
+id_Color wall_color[2], int walls_nb)
 {
     for (int w = 0; w < walls_nb; w++) {
         sector->walls[w].point1.x = rect[w].left;
@@ -39,13 +39,13 @@ sfColor wall_color[2], int walls_nb)
     }
 }
 
-void fill_sector(sectors_t *sector, shape_type shape, Vec3 *pos, Vec3 *size)
+void fill_sector(sectors_t *sector, shape_type shape, id_Vec3 *pos, id_Vec3 *size)
 {
     int walls_nb = 0;
     sfIntRect *rect = NULL;
-    sfColor top_color = {220, 220, 220, 255};
-    sfColor bottom_color = {112, 128, 144, 255};
-    sfColor wall_color[2] = {{105, 105, 105, 255}, {211, 211, 211, 255}};
+    id_Color top_color = {220, 220, 220, 255};
+    id_Color bottom_color = {112, 128, 144, 255};
+    id_Color wall_color[2] = {{105, 105, 105, 255}, {211, 211, 211, 255}};
 
     if (shape == RECTANGLE)
         rect = set_values_for_rectangle(&walls_nb, size, pos);

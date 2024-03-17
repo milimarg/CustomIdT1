@@ -5,19 +5,18 @@
 ** example.c
 */
 
-#include <SFML/Graphics.h>
 #include <dlfcn.h>
+#include <SFML/Graphics.h>
+#include <GL/glu.h>
 #include "include/struct.h"
 
-typedef my_idt1 *(*create_world_function)(char *filepath, map_type type, sfKeyCode reload_key);
-typedef void (*set_ground_and_sky_function)(sfRenderWindow *window, my_idt1 *world);
+typedef my_idt1 *(*create_world_function)(char *filepath, map_type type);
 typedef void (*move_player_function)(my_idt1 *world);
 typedef void (*display_world_function)(my_idt1 *world);
-typedef int (*reload_world_function)(my_idt1 *world, char *filepath);
+typedef int (*reload_world_function)(my_idt1 *world, char *filepath, sfBool isReloadKeyPressed);
 typedef void (*destroy_world_function)(my_idt1 *world);
 
 create_world_function create_world;
-set_ground_and_sky_function set_ground_and_sky;
 move_player_function move_player;
 display_world_function display_world;
 reload_world_function reload_world;
@@ -26,7 +25,6 @@ destroy_world_function destroy_world;
 static void get_functions(void *handle)
 {
     create_world = dlsym(handle, "create_world");
-    set_ground_and_sky = dlsym(handle, "set_ground_and_sky");
     move_player = dlsym(handle, "move_player");
     display_world = dlsym(handle, "display_world");
     reload_world = dlsym(handle, "reload_world");
@@ -39,7 +37,7 @@ int main(void)
     char *filepath = "./config_files/example_config";
     sfEvent event = {0};
     get_functions(handle);
-    my_idt1 *world = create_world(filepath, RAW_CONFIG, sfKeyR);
+    my_idt1 *world = create_world(filepath, RAW_CONFIG);
     sfVideoMode mode;
     sfRenderWindow *window = NULL;
 
@@ -48,7 +46,11 @@ int main(void)
     mode = (sfVideoMode){world->map.opengl_size.x, world->map.opengl_size.y, 32};
     window = sfRenderWindow_create(mode, "it's doomsday", sfDefaultStyle, NULL);
 
-    set_ground_and_sky(window, world);
+    sfRenderWindow_setFramerateLimit(window, 20);
+    sfRenderWindow_setActive(window, sfTrue);
+    glPointSize(world->map.pixel_scale);
+    gluOrtho2D(0, world->map.opengl_size.x, 0, world->map.opengl_size.y);
+
     world->joystick_connected = sfJoystick_isConnected(0);
     while (sfRenderWindow_isOpen(window)) {
         sfRenderWindow_clear(window, sfBlack);
@@ -60,7 +62,8 @@ int main(void)
         move_player(world);
         display_world(world);
         sfRenderWindow_display(window);
-        if (reload_world(world, filepath) == 1)
+        sfBool pressed = sfKeyboard_isKeyPressed(sfKeyR);
+        if (reload_world(world, filepath, pressed) == 1)
             return 1;
     }
     destroy_world(world);

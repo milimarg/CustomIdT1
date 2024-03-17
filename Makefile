@@ -20,8 +20,7 @@ SRC	=	src/lib/my_str_to_word_array.c \
 		src/world_handler.c \
 		src/reload_world.c \
 		src/walls.c \
-		src/sectors.c \
-		src/set_ground_sky.c
+		src/sectors.c
 
 OBJ	=	$(SRC:.c=.o)
 

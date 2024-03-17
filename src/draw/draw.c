@@ -9,7 +9,7 @@
 #include <GL/gl.h>
 #include "../../include/my.h"
 
-void draw_point(int x, int y, sfColor color, my_idt1 *world)
+void draw_point(int x, int y, id_Color color, my_idt1 *world)
 {
     glColor3ub(color.r, color.g, color.b);
     glBegin(GL_POINTS);

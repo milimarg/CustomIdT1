@@ -10,7 +10,7 @@
 #include <SFML/System.h>
 #include "../../include/my.h"
 
-void set_some_points_values(Vec2 *one_two, my_idt1 *world,
+void set_some_points_values(id_Vec2 *one_two, my_idt1 *world,
 wall_t *wall, int loop)
 {
     one_two[0].x = wall->point1.x - world->player.x;
@@ -23,7 +23,7 @@ wall_t *wall, int loop)
     }
 }
 
-coordinates_wall set_walls_pos_depending_of_window_position(Vec3 *wpos,
+coordinates_wall set_walls_pos_depending_of_window_position(id_Vec3 *wpos,
 my_idt1 *world)
 {
     int shift = 200;
