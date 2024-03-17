@@ -10,7 +10,7 @@
 
 int main(void)
 {
-    char *filepath = "../config_files/example_config";
+    char *filepath = "./config_files/example_config";
     sfEvent event = {0};
     my_idt1 *world = create_world(filepath, RAW_CONFIG, sfKeyR);
     sfVideoMode mode;
