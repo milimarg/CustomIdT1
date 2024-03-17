@@ -13,18 +13,20 @@
 #include <SFML/System.h>
 #include "../include/my.h"
 
-static void set_map_infos(my_idt1 *world, map_type type)
+static void set_map_infos(my_idt1 *world, map_type type, int pixel_scale,
+    id_Vec2 win_size)
 {
-    world->map.pixel_scale = 8;
-    world->map.win_size = (id_Vec2){800, 600};
-    world->map.opengl_size.x = world->map.win_size.x * world->map.pixel_scale;
-    world->map.opengl_size.y = world->map.win_size.y * world->map.pixel_scale;
-    world->map.type = type;
-    if (world->map.type == DANTE)
+    world->pixel_scale = pixel_scale;
+    world->win_size = win_size;
+    world->opengl_size.x = world->win_size.x * world->pixel_scale;
+    world->opengl_size.y = world->win_size.y * world->pixel_scale;
+    world->type = type;
+    if (world->type == DANTE)
         convert_dante_to_config(world->filepath);
 }
 
-my_idt1 *create_world(char *filepath, map_type type)
+my_idt1 *create_world(char *filepath, map_type type, int pixel_scale,
+    id_Vec2 win_size)
 {
     my_idt1 *world = (my_idt1 *)malloc(sizeof(my_idt1));
     world->pre_cos = (double *)malloc(sizeof(double) * 360);
@@ -37,7 +39,7 @@ my_idt1 *create_world(char *filepath, map_type type)
     world->points = sfVertexArray_create();
     world->no_spam_key = 0;
     world->filepath = filepath;
-    set_map_infos(world, type);
+    set_map_infos(world, type, pixel_scale, win_size);
     if (parse_file(world) == 1)
         return NULL;
     return (world);

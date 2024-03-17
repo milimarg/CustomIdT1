@@ -29,14 +29,14 @@ my_idt1 *world)
     int shift = 200;
     coordinates_wall wall = {0};
 
-    wpos[0].x = wpos[0].x * shift / wpos[0].y + (world->map.win_size.x / 2);
-    wpos[0].y = wpos[0].z * shift / wpos[0].y + (world->map.win_size.y / 2);
-    wpos[1].x = wpos[1].x * shift / wpos[1].y + (world->map.win_size.x / 2);
-    wpos[1].y = wpos[1].z * shift / wpos[1].y + (world->map.win_size.y / 2);
-    wpos[2].x = wpos[2].x * shift / wpos[2].y + (world->map.win_size.x / 2);
-    wpos[2].y = wpos[2].z * shift / wpos[2].y + (world->map.win_size.y / 2);
-    wpos[3].x = wpos[3].x * shift / wpos[3].y + (world->map.win_size.x / 2);
-    wpos[3].y = wpos[3].z * shift / wpos[3].y + (world->map.win_size.y / 2);
+    wpos[0].x = wpos[0].x * shift / wpos[0].y + (world->win_size.x / 2);
+    wpos[0].y = wpos[0].z * shift / wpos[0].y + (world->win_size.y / 2);
+    wpos[1].x = wpos[1].x * shift / wpos[1].y + (world->win_size.x / 2);
+    wpos[1].y = wpos[1].z * shift / wpos[1].y + (world->win_size.y / 2);
+    wpos[2].x = wpos[2].x * shift / wpos[2].y + (world->win_size.x / 2);
+    wpos[2].y = wpos[2].z * shift / wpos[2].y + (world->win_size.y / 2);
+    wpos[3].x = wpos[3].x * shift / wpos[3].y + (world->win_size.x / 2);
+    wpos[3].y = wpos[3].z * shift / wpos[3].y + (world->win_size.y / 2);
     wall = (coordinates_wall){wpos[0].x, wpos[1].x, wpos[0].y, wpos[1].y,
     wpos[2].y, wpos[3].y};
     return (wall);

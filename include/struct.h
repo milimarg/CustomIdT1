@@ -8,6 +8,8 @@
     #define STRUCT_H_
     #include <SFML/Graphics.h>
     #include <SFML/Window.h>
+    #include <stdbool.h>
+    #define KEY_ACTIONS_NUMBER 10
 
 typedef struct {
     int x;
@@ -55,7 +57,7 @@ typedef struct sectors_s {
     wall_t *walls;
 } sectors_t;
 
-typedef enum map_type {
+typedef enum {
     RAW_CONFIG = 0,
     DANTE,
 } map_type;
@@ -68,15 +70,6 @@ typedef struct my_idt1_player {
     int look;
 } my_idt1_player;
 
-typedef struct my_idt1_map {
-    map_type type;
-    sfRectangleShape *sky;
-    sfRectangleShape *ground;
-    int pixel_scale;
-    id_Vec2 win_size;
-    sfVector2f opengl_size;
-} my_idt1_map;
-
 typedef struct my_idt1 {
     double *pre_cos;
     double *pre_sin;
@@ -85,9 +78,11 @@ typedef struct my_idt1 {
     int sectors_nb;
     sectors_t **sectors;
     sfVertexArray *points;
-    sfBool joystick_connected;
     my_idt1_player player;
-    my_idt1_map map;
+    int pixel_scale;
+    id_Vec2 win_size;
+    id_Vec2 opengl_size;
+    map_type type;
 } my_idt1;
 
 typedef struct coordinates_wall {
@@ -98,6 +93,5 @@ typedef struct coordinates_wall {
     int top1;
     int top2;
 } coordinates_wall;
-
 
 #endif /*STRUCT_H_*/

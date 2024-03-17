@@ -14,8 +14,9 @@
     #include "lib.h"
     #include <stdio.h>
 
-void move_player(my_idt1 *world);
-my_idt1 *create_world(char *filepath, map_type type);
+void move_player(my_idt1 *world, bool key_actions[KEY_ACTIONS_NUMBER]);
+my_idt1 *create_world(char *filepath, map_type type, int pixel_scale,
+    id_Vec2 win_size);
 void draw_point(int x, int y, id_Color color, my_idt1 *world);
 void draw_wall(coordinates_wall *wall, id_Color color, int s, my_idt1 *world);
 int reload_world(my_idt1 *world, char *filepath, sfBool isReloadKeyPressed);

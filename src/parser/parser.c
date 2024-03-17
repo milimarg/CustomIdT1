@@ -30,7 +30,7 @@ void get_line_info(int index, my_idt1 *world, char *buffer)
         for (int i = 0; i < world->sectors_nb; i++) {
             world->sectors[i] = (sectors_t *)malloc(sizeof(sectors_t));
             world->sectors[i]->points_surface = (int *)malloc(sizeof(int) *
-            world->map.win_size.x);
+            world->win_size.x);
         }
     } else {
         output = my_str_to_word_array(buffer);
@@ -50,7 +50,7 @@ int parse_file(my_idt1 *world)
     int index = 0;
     char *types[] = {world->filepath, "3d_config"};
 
-    fd = fopen(types[world->map.type], "r");
+    fd = fopen(types[world->type], "r");
     if (fd == NULL) {
         write(2, "fd returns NULL\n", 16);
         return 1;
