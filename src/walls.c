@@ -21,8 +21,7 @@ void set_surface_type(my_idt1 *world, int s)
     }
 }
 
-// update code
-void set_wpos_values(sfVector3i *wpos, sfVector2i *one_two,
+void set_wpos_values(Vec3 *wpos, Vec2 *one_two,
 int s, my_idt1 *world)
 {
     float current_cos = world->pre_cos[world->player.angle];

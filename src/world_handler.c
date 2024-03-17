@@ -5,7 +5,6 @@
 ** world_handler.c
 */
 
-#include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
@@ -40,7 +39,8 @@ my_idt1 *create_world(char *filepath, map_type type, sfKeyCode reload_key)
     world->no_spam_key = 0;
     world->filepath = filepath;
     set_map_infos(world, type, reload_key);
-    parse_file(world);
+    if (parse_file(world) == 1)
+        return NULL;
     return (world);
 }
 
@@ -59,7 +59,7 @@ void destroy_world(my_idt1 *world)
 
 void display_world(my_idt1 *world)
 {
-    sfVector3i *wpos = malloc(sizeof(sfVector3i) * 4);
+    Vec3 *wpos = malloc(sizeof(Vec3) * 4);
 
     sort_sectors(world);
     for (int s = 0; s < world->sectors_nb; s++) {

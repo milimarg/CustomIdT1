@@ -6,11 +6,19 @@
 */
 #ifndef STRUCT_H_
     #define STRUCT_H_
-typedef struct sfVector3i {
+    #include <SFML/Graphics.h>
+    #include <SFML/Window.h>
+
+typedef struct {
+    int x;
+    int y;
+} Vec2;
+
+typedef struct {
     int x;
     int y;
     int z;
-} sfVector3i;
+} Vec3;
 typedef enum shape_type {
     RECTANGLE = 0,
     TRIANGLE,

@@ -6,19 +6,20 @@
 */
 
 #include <SFML/Graphics.h>
-#include <SFML/System.h>
-#include <SFML/OpenGL.h>
-#include <GL/gl.h>
 #include "include/my.h"
 
 int main(void)
 {
-    char *filepath = "./config/julia";
+    char *filepath = "./config/example_config";
     sfEvent event = {0};
     my_idt1 *world = create_world(filepath, RAW_CONFIG, sfKeyR);
-    sfVideoMode mode = {world->map.opengl_size.x, world->map.opengl_size.y, 32};
-    sfRenderWindow *window = sfRenderWindow_create(mode, "it's doomsday",
-    sfDefaultStyle, NULL);
+    sfVideoMode mode;
+    sfRenderWindow *window = NULL;
+
+    if (world == NULL)
+        return 1;
+    mode = (sfVideoMode){world->map.opengl_size.x, world->map.opengl_size.y, 32};
+    window = sfRenderWindow_create(mode, "it's doomsday", sfDefaultStyle, NULL);
 
     set_ground_and_sky(window, world);
     world->joystick_connected = sfJoystick_isConnected(0);
@@ -32,7 +33,8 @@ int main(void)
         move_player(world);
         display_world(world);
         sfRenderWindow_display(window);
-        reload_world(world, filepath);
+        if (reload_world(world, filepath) == 1)
+            return 1;
     }
     destroy_world(world);
     sfRenderWindow_destroy(window);

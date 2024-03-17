@@ -8,14 +8,10 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
 #include <SFML/Graphics.h>
-#include <SFML/Window.h>
-#include <SFML/System.h>
 #include "../include/my.h"
 
-static sfIntRect *set_values_for_rectangle(int *walls_nb, sfVector3f *size,
-sfVector3f *pos)
+static sfIntRect *set_values_for_rectangle(int *walls_nb, Vec3 *size, Vec3 *pos)
 {
     sfIntRect *rect = NULL;
 
@@ -43,8 +39,7 @@ sfColor wall_color[2], int walls_nb)
     }
 }
 
-void fill_sector(sectors_t *sector, shape_type shape, sfVector3f *pos,
-sfVector3f *size)
+void fill_sector(sectors_t *sector, shape_type shape, Vec3 *pos, Vec3 *size)
 {
     int walls_nb = 0;
     sfIntRect *rect = NULL;

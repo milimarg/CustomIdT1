@@ -7,7 +7,6 @@
 
 #include <stdlib.h>
 #include <SFML/Graphics.h>
-#include <SFML/System.h>
 #include "../../include/my.h"
 
 static void update_wall_delimitations(coordinates_wall *wall,
@@ -81,9 +80,9 @@ void draw_wall(coordinates_wall *wall, sfColor color, int s, my_idt1 *world)
     }
 }
 
-void draw_one_wall(my_idt1 *world, int l, int s, sfVector3i *wpos)
+void draw_one_wall(my_idt1 *world, int l, int s, Vec3 *wpos)
 {
-    sfVector2i *one_two = malloc(sizeof(sfVector2i) * 2);
+    Vec2 *one_two = malloc(sizeof(Vec2) * 2);
     coordinates_wall wall = {0};
 
     for (int w = 0; w < world->sectors[s]->walls_nb; w++) {

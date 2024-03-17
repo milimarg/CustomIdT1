@@ -8,13 +8,12 @@
 #include <math.h>
 #include <SFML/Graphics.h>
 #include <SFML/Window.h>
-#include <SFML/System.h>
 #include "../../include/my.h"
 
 static void move_with_joystick(my_idt1 *world,
-void (*functions[])(my_idt1 *, sfVector2i *))
+void (*functions[])(my_idt1 *, Vec2 *))
 {
-    sfVector2i delta = {0};
+    Vec2 delta = {0};
     float stick_turn = sfJoystick_getAxisPosition(0, sfJoystickU);
     float stick_move = sfJoystick_getAxisPosition(0, sfJoystickY);
     float stick_view = sfJoystick_getAxisPosition(0, sfJoystickV);
@@ -40,10 +39,10 @@ void move_player(my_idt1 *world)
     static sfKeyCode keys[] = {sfKeyW, sfKeyS, sfKeyLeft, sfKeyRight,
     sfKeyPageUp, sfKeyPageDown, sfKeyUp, sfKeyDown, sfKeyComma, sfKeySemicolon,
     -1};
-    static void (*functions[])(my_idt1 *, sfVector2i *) = {&move_front,
+    static void (*functions[])(my_idt1 *, Vec2 *) = {&move_front,
     &move_back, &turn_left, &turn_right, &go_up, &go_down, &lean_to_ground,
     &lean_to_sky, &strafe_left, &strafe_right};
-    sfVector2i delta = {0};
+    Vec2 delta = {0};
 
     delta.x = world->pre_sin[world->player.angle] * 10.0;
     delta.y = world->pre_cos[world->player.angle] * 10.0;

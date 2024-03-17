@@ -5,15 +5,12 @@
 ** convert_dante_to_config.c
 */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <math.h>
 #include <string.h>
-#include <SFML/Graphics.h>
-#include <SFML/Window.h>
 #include <SFML/System.h>
 #include "../../include/my.h"
 

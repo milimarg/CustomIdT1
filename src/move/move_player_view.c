@@ -10,17 +10,17 @@
 #include <SFML/System.h>
 #include "../../include/my.h"
 
-void go_up(my_idt1 *world, sfVector2i *delta __attribute_maybe_unused__)
+void go_up(my_idt1 *world, Vec2 *delta __attribute_maybe_unused__)
 {
     world->player.z++;
 }
 
-void go_down(my_idt1 *world, sfVector2i *delta __attribute_maybe_unused__)
+void go_down(my_idt1 *world, Vec2 *delta __attribute_maybe_unused__)
 {
     world->player.z--;
 }
 
-void lean_to_ground(my_idt1 *world, sfVector2i *delta __attribute_maybe_unused__)
+void lean_to_ground(my_idt1 *world, Vec2 *delta __attribute_maybe_unused__)
 {
     world->player.look++;
     if (world->player.look < -10)
@@ -29,7 +29,7 @@ void lean_to_ground(my_idt1 *world, sfVector2i *delta __attribute_maybe_unused__
         world->player.look = 10;
 }
 
-void lean_to_sky(my_idt1 *world, sfVector2i *delta __attribute_maybe_unused__)
+void lean_to_sky(my_idt1 *world, Vec2 *delta __attribute_maybe_unused__)
 {
     world->player.look--;
     if (world->player.look < -10)
@@ -38,7 +38,7 @@ void lean_to_sky(my_idt1 *world, sfVector2i *delta __attribute_maybe_unused__)
         world->player.look = 10;
 }
 
-void clip_behind_player(sfVector3i *one, sfVector3i *two)
+void clip_behind_player(Vec3 *one, Vec3 *two)
 {
     float delta_a = one->y;
     float delta_b = two->y;

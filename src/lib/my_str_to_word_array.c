@@ -6,9 +6,6 @@
 */
 
 #include <stdlib.h>
-#include <SFML/Graphics.h>
-#include <SFML/Window.h>
-#include <SFML/System.h>
 #include "../../include/my.h"
 
 static int *count_words_len(char const *str, int words_nb)
