@@ -22,12 +22,12 @@ void move_back(my_idt1 *world, sfVector2i *delta)
     world->player.y -= delta->y;
 }
 
-void turn_left(my_idt1 *world, sfVector2i *delta)
+void turn_left(my_idt1 *world, sfVector2i *delta __attribute_maybe_unused__)
 {
     world->player.angle = fix_angle(world->player.angle - 4);
 }
 
-void turn_right(my_idt1 *world, sfVector2i *delta)
+void turn_right(my_idt1 *world, sfVector2i *delta __attribute_maybe_unused__)
 {
     world->player.angle = fix_angle(world->player.angle + 4);
 }

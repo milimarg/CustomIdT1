@@ -10,17 +10,17 @@
 #include <SFML/System.h>
 #include "../../include/my.h"
 
-void go_up(my_idt1 *world, sfVector2i *delta)
+void go_up(my_idt1 *world, sfVector2i *delta __attribute_maybe_unused__)
 {
     world->player.z++;
 }
 
-void go_down(my_idt1 *world, sfVector2i *delta)
+void go_down(my_idt1 *world, sfVector2i *delta __attribute_maybe_unused__)
 {
     world->player.z--;
 }
 
-void lean_to_ground(my_idt1 *world, sfVector2i *delta)
+void lean_to_ground(my_idt1 *world, sfVector2i *delta __attribute_maybe_unused__)
 {
     world->player.look++;
     if (world->player.look < -10)
@@ -29,7 +29,7 @@ void lean_to_ground(my_idt1 *world, sfVector2i *delta)
         world->player.look = 10;
 }
 
-void lean_to_sky(my_idt1 *world, sfVector2i *delta)
+void lean_to_sky(my_idt1 *world, sfVector2i *delta __attribute_maybe_unused__)
 {
     world->player.look--;
     if (world->player.look < -10)

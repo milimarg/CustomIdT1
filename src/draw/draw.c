@@ -21,10 +21,6 @@ void draw_point(int x, int y, sfColor color, my_idt1 *world)
 sfColor get_texture_pixel(sfVector2u *pos, sfVector2u *texture_size,
 sfImage *image)
 {
-    if (pos->x < 0)
-        pos->x = 0;
-    if (pos->y < 0)
-        pos->y = 0;
     while (pos->x >= texture_size->x)
         pos->x -= texture_size->x;
     while (pos->y >= texture_size->y)

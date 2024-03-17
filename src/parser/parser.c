@@ -25,7 +25,7 @@ void get_line_info(int index, my_idt1 *world, char *buffer)
     char **output = NULL;
 
     if (index == 0) {
-        world->sectors_nb = my_getnbr(buffer);
+        world->sectors_nb = atoi(buffer);
         world->sectors = malloc(sizeof(sectors_t *) * world->sectors_nb);
         for (int i = 0; i < world->sectors_nb; i++) {
             world->sectors[i] = malloc(sizeof(sectors_t));
@@ -36,9 +36,9 @@ void get_line_info(int index, my_idt1 *world, char *buffer)
         output = my_str_to_word_array(buffer);
         check_parameters_are_right(output);
         fill_sector(world->sectors[index - 1], RECTANGLE,
-        &(sfVector3f){my_getnbr(output[1]), my_getnbr(output[2]),
-        my_getnbr(output[3])}, &(sfVector3f){my_getnbr(output[4]),
-        my_getnbr(output[5]), my_getnbr(output[6])});
+        &(sfVector3f){atoi(output[1]), atoi(output[2]),
+        atoi(output[3])}, &(sfVector3f){atoi(output[4]),
+        atoi(output[5]), atoi(output[6])});
     }
 }
 

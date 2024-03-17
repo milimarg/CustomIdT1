@@ -8,12 +8,12 @@
 #include <SFML/Graphics.h>
 #include <SFML/System.h>
 #include <SFML/OpenGL.h>
-#include <SFML/GL.h>
+#include <GL/gl.h>
 #include "include/my.h"
 
 int main(void)
 {
-    char *filepath = "./config/example_config";
+    char *filepath = "./config/julia";
     sfEvent event = {0};
     my_idt1 *world = create_world(filepath, RAW_CONFIG, sfKeyR);
     sfVideoMode mode = {world->map.opengl_size.x, world->map.opengl_size.y, 32};
@@ -24,8 +24,8 @@ int main(void)
     world->joystick_connected = sfJoystick_isConnected(0);
     while (sfRenderWindow_isOpen(window)) {
         sfRenderWindow_clear(window, sfBlack);
-        while (sfRenderWindow_pollEvent(window, event)) {
-            if (event->type == sfEvtClosed) {
+        while (sfRenderWindow_pollEvent(window, &event)) {
+            if (event.type == sfEvtClosed) {
                 sfRenderWindow_close(window);
             }
         }

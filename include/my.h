@@ -12,6 +12,7 @@
     #define my_char_isvisible(c) (c >= '!' && c <= '~')
     #include "struct.h"
     #include "lib.h"
+    #include <stdio.h>
 
 void move_player(my_idt1 *world);
 my_idt1 *create_world(char *filepath, map_type type, sfKeyCode reload_key);

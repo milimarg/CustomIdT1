@@ -98,7 +98,7 @@ void convert_dante_to_config(char *filepath)
     char *buffer = NULL;
     int *walls_sectors_nb = malloc(sizeof(int) * 2);
 
-    my_extra_int_memset(walls_sectors_nb, 0, 2);
+    memset(walls_sectors_nb, 0, 2);
     error_handling_file(filepath, &st);
     buffer = malloc(sizeof(char) * (st.st_size + 1));
     fd = open(filepath, O_RDONLY);

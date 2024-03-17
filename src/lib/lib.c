@@ -25,12 +25,6 @@ void my_put_nbr_fd(int nb, unsigned int fd)
     write(fd, &c, 1);
 }
 
-void my_extra_int_memset(int *s, int c, size_t n)
-{
-    for (int i = 0; i < n; i++)
-        s[i] = c;
-}
-
 void my_swap(int *a, int *b)
 {
     int c = 0;
@@ -46,17 +40,4 @@ int my_array_len(char **array)
 
     for (; array[i] != NULL; i++);
     return (i);
-}
-
-int my_getnbr(char const *str)
-{
-    int i = 0;
-    int neg = 1;
-    int nb = 0;
-
-    while (str[i] == '-' || str[i] == '+')
-        neg *= (str[i++] == '-') ? (-1) : 1;
-    for (; str[i] >= '0' && str[i] <= '9'; i++)
-        nb = (nb * 10) + (str[i] - '0');
-    return (nb * neg);
 }
