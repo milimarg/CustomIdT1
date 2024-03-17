@@ -25,15 +25,6 @@ void my_put_nbr_fd(int nb, unsigned int fd)
     write(fd, &c, 1);
 }
 
-void my_swap(int *a, int *b)
-{
-    int c = 0;
-
-    c = *a;
-    *a = *b;
-    *b = c;
-}
-
 int my_array_len(char **array)
 {
     int i = 0;

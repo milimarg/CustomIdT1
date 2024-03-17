@@ -8,6 +8,7 @@
     #define STRUCT_H_
     #include <SFML/Graphics.hpp>
     #include <SFML/Window.hpp>
+    #include <stdlib.h>
 
 typedef struct {
     int x;
@@ -63,7 +64,36 @@ typedef struct my_idt1_map {
     sf::Vector2f win_size;
     sf::Vector2f opengl_size;
 } my_idt1_map;
-typedef struct my_idt1 {
+
+void convert_dante_to_config(char *filepath);
+int parse_file(my_idt1 *world);
+
+class my_idt1 {
+public:
+    my_idt1(char *_filepath, map_type _type, sf::Keyboard::Key _key) {
+        pre_cos = (double *)malloc(sizeof(double) * 360);
+        pre_sin = (double *)malloc(sizeof(double) * 360);
+        for (int i = 0; i < 360; i++) {
+            pre_cos[i] = cos(deg_to_rad(i));
+            pre_sin[i] = sin(deg_to_rad(i));
+        }
+        player = (my_idt1_player){0, 0, 30, 0, 0};
+        no_spam_key = 0;
+        filepath = _filepath;
+
+        map.pixel_scale = 8;
+        map.win_size = sf::Vector2f(800, 600);
+        map.opengl_size.x = map.win_size.x * map.pixel_scale;
+        map.opengl_size.y = map.win_size.y * map.pixel_scale;
+        map.type = _type;
+        map.reload_key = _key;
+        if (map.type == DANTE)
+            convert_dante_to_config(filepath);
+
+        if (parse_file(this) == 1)
+            exit(1);
+    }
+    ~my_idt1();
     double *pre_cos;
     double *pre_sin;
     char *filepath;
@@ -74,7 +104,8 @@ typedef struct my_idt1 {
     bool joystick_connected;
     my_idt1_player player;
     my_idt1_map map;
-} my_idt1;
+};
+
 typedef struct coordinates_wall {
     int x1;
     int x2;

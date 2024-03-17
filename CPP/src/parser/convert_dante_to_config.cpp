@@ -52,7 +52,7 @@ int *walls_sectors_nb, int fd)
     static int a = 0;
     static int texture_size = 8;
     static int texture_size_sq = 0;
-    int values[] = {index->x * texture_size_sq, index->y * texture_size_sq, 0,
+    int values[] = {(int)index->x * texture_size_sq, (int)index->y * texture_size_sq, 0,
     texture_size_sq, texture_size_sq, texture_size_sq};
 
     if (!a) {

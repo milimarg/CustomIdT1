@@ -14,21 +14,21 @@
     #include "lib.h"
     #include <stdio.h>
 
-void move_player(my_idt1 *world);
+void move_player(my_idt1 &world);
 my_idt1 *create_world(char *filepath, map_type type, sf::Keyboard::Key reload_key);
-void draw_point(int x, int y, sf::Color color, my_idt1 *world);
-void draw_wall(coordinates_wall *wall, sf::Color color, int s, my_idt1 *world);
+void draw_point(int x, int y, sf::Color color, my_idt1 &world);
+void draw_wall(coordinates_wall *wall, sf::Color color, int s, my_idt1 &world);
 int reload_world(my_idt1 *world, char *filepath);
 void convert_dante_to_config(char *filepath);
 void clip_behind_player(Vec3 *one, Vec3 *two);
-void draw_one_wall(my_idt1 *world, int loop, int s, Vec3 *wpos);
-void set_some_points_values(Vec2 *one_two, my_idt1 *world,
+void draw_one_wall(my_idt1 &world, int loop, int s, Vec3 *wpos);
+void set_some_points_values(Vec2 *one_two, my_idt1 &world,
 wall_t *wall, int loop);
 coordinates_wall set_walls_pos_depending_of_window_position(Vec3 *wpos,
-my_idt1 *world);
-void set_surface_type(my_idt1 *world, int s);
+my_idt1 &world);
+void set_surface_type(my_idt1 &world, int s);
 void set_wpos_values(Vec3 *wpos, Vec2 *one_two,
-int s, my_idt1 *world);
+int s, my_idt1 &world);
 void destroy_world(my_idt1 *world);
 void move_front(my_idt1 *world, Vec2 *delta);
 void move_back(my_idt1 *world, Vec2 *delta);

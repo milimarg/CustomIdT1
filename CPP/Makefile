@@ -28,12 +28,12 @@ OBJ	=	$(SRC:.cpp=.o)
 
 NAME	=	idt1
 
-CPPFLAGS	=	-Wall -Wextra -std=c++20
+CPPFLAGS	=	-Wall -Wextra -std=c++20 -g
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	g++ -o $(NAME) $(OBJ) -lcsfml-graphics -lcsfml-window -lGL -lGLU -lm
+	g++ -o $(NAME) $(OBJ) -lsfml-graphics -lsfml-window -lsfml-system -lGL -lGLU -lm
 
 clean:
 	rm -f $(OBJ)

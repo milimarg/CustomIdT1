@@ -34,7 +34,7 @@ void (*functions[])(my_idt1 *, Vec2 *))
         functions[7](world, &delta);
 }
 
-void move_player(my_idt1 *world)
+void move_player(my_idt1 &world)
 {
     static sf::Keyboard::Key keys[] = {sf::Keyboard::W, sf::Keyboard::S, sf::Keyboard::Left, sf::Keyboard::Right,
     sf::Keyboard::PageUp, sf::Keyboard::PageDown, sf::Keyboard::Up, sf::Keyboard::Down, sf::Keyboard::Comma, sf::Keyboard::SemiColon,
@@ -44,12 +44,12 @@ void move_player(my_idt1 *world)
     &lean_to_sky, &strafe_left, &strafe_right};
     Vec2 delta = {0};
 
-    delta.x = world->pre_sin[world->player.angle] * 10.0;
-    delta.y = world->pre_cos[world->player.angle] * 10.0;
+    delta.x = world.pre_sin[world.player.angle] * 10.0;
+    delta.y = world.pre_cos[world.player.angle] * 10.0;
     for (int i = 0; keys[i] != -1; i++) {
         if (sf::Keyboard::isKeyPressed(keys[i]))
-            functions[i](world, &delta);
+            functions[i](&world, &delta);
     }
-    if (world->joystick_connected)
-        move_with_joystick(world, functions);
+    if (world.joystick_connected)
+        move_with_joystick(&world, functions);
 }

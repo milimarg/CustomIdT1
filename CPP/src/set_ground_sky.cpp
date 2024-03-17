@@ -15,8 +15,8 @@ void set_ground_and_sky(sf::RenderWindow &window, my_idt1 *world)
 {
     sf::Color ground_color = sf::Color::Red;
     sf::Color ceiling_color = {114, 137, 218, 255};
-    sf::Vector2f ceiling_size = {world->map.opengl_size.x / 2.0,
-    world->map.opengl_size.y / 2.0};
+    sf::Vector2f ceiling_size = {world->map.opengl_size.x / 2.0f,
+    world->map.opengl_size.y / 2.0f};
 
     window.setFramerateLimit(20);
     window.setActive(true);

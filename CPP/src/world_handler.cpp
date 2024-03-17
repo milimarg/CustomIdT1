@@ -15,14 +15,7 @@
 
 void set_map_infos(my_idt1 *world, map_type type, sf::Keyboard::Key reload_key)
 {
-    world->map.pixel_scale = 8;
-    world->map.win_size = (sf::Vector2f){800, 600};
-    world->map.opengl_size.x = world->map.win_size.x * world->map.pixel_scale;
-    world->map.opengl_size.y = world->map.win_size.y * world->map.pixel_scale;
-    world->map.type = type;
-    world->map.reload_key = reload_key;
-    if (world->map.type == DANTE)
-        convert_dante_to_config(world->filepath);
+
 }
 
 my_idt1 *create_world(char *filepath, map_type type, sf::Keyboard::Key reload_key)
@@ -56,18 +49,18 @@ void destroy_world(my_idt1 *world)
     free(world);
 }
 
-void display_world(my_idt1 *world)
+void display_world(my_idt1 &world)
 {
     Vec3 *wpos = (Vec3 *)malloc(sizeof(Vec3) * 4);
 
     sort_sectors(world);
-    for (int s = 0; s < world->sectors_nb; s++) {
-        world->sectors[s]->d = 0;
+    for (int s = 0; s < world.sectors_nb; s++) {
+        world.sectors[s]->d = 0;
         set_surface_type(world, s);
         for (int loop = 0; loop < 2; loop++) {
             draw_one_wall(world, loop, s, wpos);
-            world->sectors[s]->d /= world->sectors[s]->walls_nb;
-            world->sectors[s]->surface *= -1;
+            world.sectors[s]->d /= world.sectors[s]->walls_nb;
+            world.sectors[s]->surface *= -1;
         }
     }
     free(wpos);
