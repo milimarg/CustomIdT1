@@ -21,19 +21,18 @@ SRC	=	src/lib/my_str_to_word_array.c \
 		src/reload_world.c \
 		src/walls.c \
 		src/sectors.c \
-		src/set_ground_sky.c \
-		example.c
+		src/set_ground_sky.c
 
 OBJ	=	$(SRC:.c=.o)
 
-NAME	=	idt1
+NAME	=	libidt1.so
 
-CFLAGS	=	-Wall -Wextra
+CFLAGS	=	-Wall -Wextra -fPIC
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	gcc -o $(NAME) $(OBJ) -lcsfml-graphics -lcsfml-window -lGL -lGLU -lm
+	gcc -shared -fPIC -o $(NAME) $(OBJ) -lcsfml-graphics -lcsfml-window -lGL -lGLU -lm
 
 clean:
 	rm -f $(OBJ)
