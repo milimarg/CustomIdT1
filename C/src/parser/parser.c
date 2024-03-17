@@ -26,10 +26,10 @@ void get_line_info(int index, my_idt1 *world, char *buffer)
 
     if (index == 0) {
         world->sectors_nb = atoi(buffer);
-        world->sectors = malloc(sizeof(sectors_t *) * world->sectors_nb);
+        world->sectors = (sectors_t **)malloc(sizeof(sectors_t *) * world->sectors_nb);
         for (int i = 0; i < world->sectors_nb; i++) {
-            world->sectors[i] = malloc(sizeof(sectors_t));
-            world->sectors[i]->points_surface = malloc(sizeof(int) *
+            world->sectors[i] = (sectors_t *)malloc(sizeof(sectors_t));
+            world->sectors[i]->points_surface = (int *)malloc(sizeof(int) *
             world->map.win_size.x);
         }
     } else {

@@ -16,7 +16,7 @@ static sfIntRect *set_values_for_rectangle(int *walls_nb, Vec3 *size, Vec3 *pos)
     sfIntRect *rect = NULL;
 
     *walls_nb = 4;
-    rect = malloc(sizeof(sfIntRect) * (*walls_nb));
+    rect = (sfIntRect *)malloc(sizeof(sfIntRect) * (*walls_nb));
     rect[0] = (sfIntRect){pos->x, pos->y, pos->x + size->x, pos->y};
     rect[1] = (sfIntRect){rect[0].width, rect[0].height, pos->x + size->x,
     pos->y + size->y};
@@ -53,7 +53,7 @@ void fill_sector(sectors_t *sector, shape_type shape, Vec3 *pos, Vec3 *size)
         write(2, "walls number can't be null\n", 27);
     }
     sector->walls_nb = walls_nb;
-    sector->walls = malloc(sizeof(wall_t) * walls_nb);
+    sector->walls = (wall_t *)malloc(sizeof(wall_t) * walls_nb);
     sector->z1 = pos->z;
     sector->z2 = size->z - pos->z;
     sector->top = top_color;

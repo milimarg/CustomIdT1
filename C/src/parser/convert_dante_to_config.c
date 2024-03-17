@@ -93,11 +93,11 @@ void convert_dante_to_config(char *filepath)
     struct stat st = {0};
     sfVector2u map_size = {0};
     char *buffer = NULL;
-    int *walls_sectors_nb = malloc(sizeof(int) * 2);
+    int *walls_sectors_nb = (int *)malloc(sizeof(int) * 2);
 
     memset(walls_sectors_nb, 0, 2);
     error_handling_file(filepath, &st);
-    buffer = malloc(sizeof(char) * (st.st_size + 1));
+    buffer = (char *)malloc(sizeof(char) * (st.st_size + 1));
     fd = open(filepath, O_RDONLY);
     if (fd == -1) {
         write(2, "can't open dante file (open)\n", 29);

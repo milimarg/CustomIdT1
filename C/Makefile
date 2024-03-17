@@ -7,7 +7,7 @@
 
 SRC	=	src/lib/my_str_to_word_array.c \
 		src/lib/lib.c \
-        	src/lib/utils.c \
+        src/lib/utils.c \
 		src/draw/draw.c \
 		src/draw/draw_wall.c \
 		src/draw/points.c \

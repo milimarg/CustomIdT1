@@ -27,9 +27,9 @@ void set_map_infos(my_idt1 *world, map_type type, sfKeyCode reload_key)
 
 my_idt1 *create_world(char *filepath, map_type type, sfKeyCode reload_key)
 {
-    my_idt1 *world = malloc(sizeof(my_idt1));
-    world->pre_cos = malloc(sizeof(double) * 360);
-    world->pre_sin = malloc(sizeof(double) * 360);
+    my_idt1 *world = (my_idt1 *)malloc(sizeof(my_idt1));
+    world->pre_cos = (double *)malloc(sizeof(double) * 360);
+    world->pre_sin = (double *)malloc(sizeof(double) * 360);
     for (int i = 0; i < 360; i++) {
         world->pre_cos[i] = cos(deg_to_rad(i));
         world->pre_sin[i] = sin(deg_to_rad(i));
@@ -59,7 +59,7 @@ void destroy_world(my_idt1 *world)
 
 void display_world(my_idt1 *world)
 {
-    Vec3 *wpos = malloc(sizeof(Vec3) * 4);
+    Vec3 *wpos = (Vec3 *)malloc(sizeof(Vec3) * 4);
 
     sort_sectors(world);
     for (int s = 0; s < world->sectors_nb; s++) {

@@ -13,7 +13,7 @@ static int *count_words_len(char const *str, int words_nb)
     int i = 0;
     int k = 0;
     int next_index = 0;
-    int *full_len = malloc(sizeof(int) * words_nb);
+    int *full_len = (int *)malloc(sizeof(int) * words_nb);
 
     while (str[i] != '\0') {
         if (my_char_isvisible(str[i]) && !my_char_isvisible(str[i + 1])) {
@@ -29,7 +29,7 @@ static int *count_words_len(char const *str, int words_nb)
 static char *word_saver(int i, int j, const char *str, int current_word_len)
 {
     int k = 0;
-    char *word = malloc(sizeof(char) * (current_word_len + 1));
+    char *word = (char *)malloc(sizeof(char) * (current_word_len + 1));
 
     while (j <= i) {
         word[k] = (my_char_isvisible(str[j])) ? str[j] : '\0';
@@ -42,7 +42,7 @@ static char *word_saver(int i, int j, const char *str, int current_word_len)
 
 static char **divide_array(char const *str, int words_nb)
 {
-    char **result = malloc(sizeof(char *) * (words_nb + 1));
+    char **result = (char **)malloc(sizeof(char *) * (words_nb + 1));
     char *word = NULL;
     int *words_len = count_words_len(str, words_nb);
     int current_word_len = 0;
