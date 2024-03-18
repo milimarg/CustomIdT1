@@ -23,7 +23,6 @@ move_player_function move_player;
 display_world_function display_world;
 reload_world_function reload_world;
 destroy_world_function destroy_world;
-move_player_function move_player;
 clear_points_function clear_points;
 
 static sfKeyCode keys[KEY_ACTIONS_NUMBER] = {
@@ -65,9 +64,9 @@ int main(void)
     window = sfRenderWindow_create(mode, "it's doomsday", sfDefaultStyle, NULL);
 
     sfRenderWindow_setFramerateLimit(window, 20);
-    sfRenderWindow_setActive(window, sfTrue);
-    glPointSize(world->pixel_scale);
-    gluOrtho2D(0, world->opengl_size.x, 0, world->opengl_size.y);
+    //sfRenderWindow_setActive(window, sfTrue);
+    glPointSize(world->pixel_scale); // TODO: remove
+    gluOrtho2D(0, world->opengl_size.x, 0, world->opengl_size.y); // TODO: remove
 
     while (sfRenderWindow_isOpen(window)) {
         sfRenderWindow_clear(window, sfBlack);
@@ -84,9 +83,9 @@ int main(void)
         move_player(world, actions);
         display_world(world);
 
-        for (int y = 0; y < 108; y++) {
-            for (int x = 0; x < 192; x++) {
-                id_vertex v = world->points[x * 192 + y]; // TODO: 192 is screen width
+        for (int y = 0; y < world->win_size.y; y++) {
+            for (int x = 0; x < world->win_size.x; x++) {
+                id_vertex v = world->points[x * world->win_size.x + y];
                 glColor3ub(v.color.r, v.color.g, v.color.b);
                 glBegin(GL_POINTS);
                 glVertex2i(x * world->pixel_scale, y * world->pixel_scale);

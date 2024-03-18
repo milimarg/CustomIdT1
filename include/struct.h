@@ -6,8 +6,6 @@
 */
 #ifndef STRUCT_H_
     #define STRUCT_H_
-    #include <SFML/Graphics.h>
-    #include <SFML/Window.h>
     #include <stdbool.h>
     #define KEY_ACTIONS_NUMBER 10
     #define POINTS_NUMBER (192 * 191) + 108
@@ -61,8 +59,8 @@ typedef enum wall_type {
 /* misc */
 
 typedef struct wall_s {
-    sfVector2f point1;
-    sfVector2f point2;
+    id_Vec2 point1;
+    id_Vec2 point2;
     id_Color color;
 } wall_t;
 

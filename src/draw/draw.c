@@ -16,6 +16,6 @@ void clear_points(my_idt1 *world)
 
 void draw_point(int x, int y, id_Color color, my_idt1 *world)
 {
-    size_t index = x * 192 + y; // TODO: 192 is width of screen
+    size_t index = x * world->win_size.x + y;
     world->points[index] = (id_vertex){.position = {x, y}, .color = color};
 }
