@@ -5,10 +5,6 @@
 ** utils.c
 */
 
-#include <math.h>
-#include <SFML/Graphics.h>
-#include <SFML/Window.h>
-#include <SFML/System.h>
 #include "../../include/my.h"
 
 int fix_angle(int angle)

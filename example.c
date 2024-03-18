@@ -14,8 +14,9 @@ typedef my_idt1 *(*create_world_function)(char *filepath, map_type type, int pix
     id_Vec2 win_size);
 typedef void (*move_player_function)(my_idt1 *world, bool key_actions[KEY_ACTIONS_NUMBER]);
 typedef void (*display_world_function)(my_idt1 *world);
-typedef int (*reload_world_function)(my_idt1 *world, char *filepath, sfBool isReloadKeyPressed);
+typedef int (*reload_world_function)(my_idt1 *world, char *filepath, bool isReloadKeyPressed);
 typedef void (*destroy_world_function)(my_idt1 *world);
+typedef void (*clear_points_function)(my_idt1 *world);
 
 create_world_function create_world;
 move_player_function move_player;
@@ -23,6 +24,7 @@ display_world_function display_world;
 reload_world_function reload_world;
 destroy_world_function destroy_world;
 move_player_function move_player;
+clear_points_function clear_points;
 
 static sfKeyCode keys[KEY_ACTIONS_NUMBER] = {
         sfKeyW,         // move front
@@ -44,6 +46,7 @@ static void get_functions(void *handle)
     display_world = dlsym(handle, "display_world");
     reload_world = dlsym(handle, "reload_world");
     destroy_world = dlsym(handle, "destroy_world");
+    clear_points = dlsym(handle, "clear_points");
 }
 
 int main(void)
@@ -68,6 +71,7 @@ int main(void)
 
     while (sfRenderWindow_isOpen(window)) {
         sfRenderWindow_clear(window, sfBlack);
+        clear_points(world);
         while (sfRenderWindow_pollEvent(window, &event)) {
             if (event.type == sfEvtClosed) {
                 sfRenderWindow_close(window);
@@ -79,6 +83,17 @@ int main(void)
 
         move_player(world, actions);
         display_world(world);
+
+        for (int y = 0; y < 108; y++) {
+            for (int x = 0; x < 192; x++) {
+                id_vertex v = world->points[x * 192 + y]; // TODO: 192 is screen width
+                glColor3ub(v.color.r, v.color.g, v.color.b);
+                glBegin(GL_POINTS);
+                glVertex2i(x * world->pixel_scale, y * world->pixel_scale);
+                glEnd();
+            }
+        }
+
         sfRenderWindow_display(window);
         sfBool pressed = sfKeyboard_isKeyPressed(sfKeyR);
         if (reload_world(world, filepath, pressed) == 1)

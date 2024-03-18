@@ -5,12 +5,6 @@
 ** parser.c
 */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <SFML/Graphics.h>
-#include <SFML/Window.h>
-#include <SFML/System.h>
 #include "../../include/my.h"
 
 static void check_parameters_are_right(char **output)

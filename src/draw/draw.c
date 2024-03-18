@@ -5,14 +5,17 @@
 ** draw.c
 */
 
-#include <SFML/Graphics.h>
-#include <GL/gl.h>
 #include "../../include/my.h"
+
+void clear_points(my_idt1 *world)
+{
+    for (size_t i = 0; i < sizeof(world->points) / sizeof(world->points[0]); i++) {
+        world->points[i] = (id_vertex){0};
+    }
+}
 
 void draw_point(int x, int y, id_Color color, my_idt1 *world)
 {
-    glColor3ub(color.r, color.g, color.b);
-    glBegin(GL_POINTS);
-    glVertex2i(x * world->pixel_scale, y * world->pixel_scale);
-    glEnd();
+    size_t index = x * 192 + y; // TODO: 192 is width of screen
+    world->points[index] = (id_vertex){.position = {x, y}, .color = color};
 }

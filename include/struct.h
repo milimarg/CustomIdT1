@@ -10,6 +10,9 @@
     #include <SFML/Window.h>
     #include <stdbool.h>
     #define KEY_ACTIONS_NUMBER 10
+    #define POINTS_NUMBER (192 * 191) + 108
+
+/* CUSTOM DATA TYPES */
 
 typedef struct {
     int x;
@@ -29,6 +32,21 @@ typedef struct {
     unsigned char a;
 } id_Color;
 
+typedef struct
+{
+    int left;
+    int top;
+    int width;
+    int height;
+} id_rect;
+
+typedef struct {
+    id_Vec2 position;
+    id_Color color;
+} id_vertex;
+
+/* DATA TYPES ENUM */
+
 typedef enum shape_type {
     RECTANGLE = 0,
     TRIANGLE,
@@ -39,6 +57,8 @@ typedef enum wall_type {
     BOTTOM,
     TOP,
 } wall_type;
+
+/* misc */
 
 typedef struct wall_s {
     sfVector2f point1;
@@ -77,7 +97,7 @@ typedef struct my_idt1 {
     int no_spam_key;
     int sectors_nb;
     sectors_t **sectors;
-    sfVertexArray *points;
+    id_vertex points[POINTS_NUMBER]; // TODO: screen size
     my_idt1_player player;
     int pixel_scale;
     id_Vec2 win_size;

@@ -5,29 +5,25 @@
 ** sectors.c
 */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <string.h>
-#include <SFML/Graphics.h>
 #include "../include/my.h"
 
-static sfIntRect *set_values_for_rectangle(int *walls_nb, id_Vec3 *size, id_Vec3 *pos)
+static id_rect *set_values_for_rectangle(int *walls_nb, id_Vec3 *size, id_Vec3 *pos)
 {
-    sfIntRect *rect = NULL;
+    id_rect *rect = NULL;
 
     *walls_nb = 4;
-    rect = (sfIntRect *)malloc(sizeof(sfIntRect) * (*walls_nb));
-    rect[0] = (sfIntRect){pos->x, pos->y, pos->x + size->x, pos->y};
-    rect[1] = (sfIntRect){rect[0].width, rect[0].height, pos->x + size->x,
+    rect = (id_rect *)malloc(sizeof(id_rect) * (*walls_nb));
+    rect[0] = (id_rect){pos->x, pos->y, pos->x + size->x, pos->y};
+    rect[1] = (id_rect){rect[0].width, rect[0].height, pos->x + size->x,
     pos->y + size->y};
-    rect[2] = (sfIntRect){rect[1].width, rect[1].height, pos->x, pos->y +
+    rect[2] = (id_rect){rect[1].width, rect[1].height, pos->x, pos->y +
     size->y};
-    rect[3] = (sfIntRect){rect[2].width, rect[2].height, rect[0].left,
+    rect[3] = (id_rect){rect[2].width, rect[2].height, rect[0].left,
     rect[0].top};
     return (rect);
 }
 
-static void fill_walls_info(sectors_t *sector, sfIntRect *rect,
+static void fill_walls_info(sectors_t *sector, id_rect *rect,
 id_Color wall_color[2], int walls_nb)
 {
     for (int w = 0; w < walls_nb; w++) {
@@ -42,7 +38,7 @@ id_Color wall_color[2], int walls_nb)
 void fill_sector(sectors_t *sector, shape_type shape, id_Vec3 *pos, id_Vec3 *size)
 {
     int walls_nb = 0;
-    sfIntRect *rect = NULL;
+    id_rect *rect = NULL;
     id_Color top_color = {220, 220, 220, 255};
     id_Color bottom_color = {112, 128, 144, 255};
     id_Color wall_color[2] = {{105, 105, 105, 255}, {211, 211, 211, 255}};

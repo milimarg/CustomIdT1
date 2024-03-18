@@ -5,9 +5,6 @@
 ** walls.c
 */
 
-#include <SFML/Graphics.h>
-#include <SFML/Window.h>
-#include <SFML/System.h>
 #include "../include/my.h"
 
 void set_surface_type(my_idt1 *world, int s)

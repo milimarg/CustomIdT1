@@ -5,7 +5,6 @@
 ** my_str_to_word_array.c
 */
 
-#include <stdlib.h>
 #include "../../include/my.h"
 
 static int *count_words_len(char const *str, int words_nb)

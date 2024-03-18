@@ -5,13 +5,6 @@
 ** convert_dante_to_config.c
 */
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <math.h>
-#include <string.h>
-#include <SFML/System.h>
 #include "../../include/my.h"
 
 static void error_handling_file(char *filepath, struct stat *st)
@@ -24,7 +17,7 @@ static void error_handling_file(char *filepath, struct stat *st)
     }
 }
 
-static void get_map_size(int *fd, char *buffer, sfVector2u *map_size,
+static void get_map_size(int *fd, char *buffer, id_Vec2 *map_size,
 int *walls_sectors_nb)
 {
     int count_width = 1;
@@ -46,7 +39,7 @@ int *walls_sectors_nb)
     map_size->y++;
 }
 
-static void print_config_wall(char char_to_check, sfVector2u *index,
+static void print_config_wall(char char_to_check, id_Vec2 *index,
 int *walls_sectors_nb, int fd)
 {
     static int a = 0;
@@ -71,12 +64,12 @@ int *walls_sectors_nb, int fd)
     a = (walls_sectors_nb[1] == walls_sectors_nb[0]) ? 0 : a;
 }
 
-static void print_config_lines(sfVector2u *map_size, char *buffer, int fd,
+static void print_config_lines(id_Vec2 *map_size, char *buffer, int fd,
 int *walls_sectors_nb)
 {
     int pos = 0;
 
-    sfVector2u index = {0};
+    id_Vec2 index = {0};
     my_put_nbr_fd(walls_sectors_nb[0], fd);
     write(fd, "\n", 1);
     for (index.y = 0; index.y < map_size->y; index.y++) {
@@ -91,7 +84,7 @@ void convert_dante_to_config(char *filepath)
 {
     int fd = 0;
     struct stat st = {0};
-    sfVector2u map_size = {0};
+    id_Vec2 map_size = {0};
     char *buffer = NULL;
     int *walls_sectors_nb = (int *)malloc(sizeof(int) * 2);
 

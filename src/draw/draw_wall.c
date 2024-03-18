@@ -5,8 +5,6 @@
 ** draw_wall.c
 */
 
-#include <stdlib.h>
-#include <SFML/Graphics.h>
 #include "../../include/my.h"
 
 static void update_wall_delimitations(coordinates_wall *wall,
@@ -15,10 +13,8 @@ int *delta_x, my_idt1 *world)
     *delta_x = (*delta_x == 0) ? 1 : *delta_x;
     wall->x1 = (wall->x1 < 1) ? 1 : wall->x1;
     wall->x2 = (wall->x2 < 1) ? 1 : wall->x2;
-    wall->x1 = (wall->x1 > world->win_size.x - 1) ?
-    world->win_size.x - 1 : wall->x1; // TODO: use min macro
-    wall->x2 = (wall->x2 > world->win_size.x - 1) ?
-    world->win_size.x - 1 : wall->x2; // TODO: use min macro
+    wall->x1 = min(world->win_size.x - 1, wall->x1);
+    wall->x2 = min(world->win_size.x - 1, wall->x2);
 }
 
 static void draw_surfaces(my_idt1 *world, int s_and_x[2], int y_array[2],
@@ -70,10 +66,8 @@ void draw_wall(coordinates_wall *wall, id_Color color, int s, my_idt1 *world)
         y[1] = delta_top * (x - voila + 0.5) / delta_x + wall->top1;
         y[0] = (y[0] < 1) ? 1 : y[0];
         y[1] = (y[1] < 1) ? 1 : y[1];
-        y[0] = (y[0] > world->win_size.y - 1) ? // TODO: use min macro
-        world->win_size.y - 1 : y[0];
-        y[1] = (y[1] > world->win_size.y - 1) ? // TODO: use min macro
-        world->win_size.y - 1 : y[1];
+        y[0] = min(world->win_size.y - 1, y[0]);
+        y[1] = min(world->win_size.y - 1, y[1]);
         if (skip_surface_bottom_top(world, (int[2]){s, x}, y))
             continue;
         draw_surfaces(world, (int[2]){s, x}, y, color);

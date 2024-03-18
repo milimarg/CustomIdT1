@@ -5,13 +5,9 @@
 ** reload_world.c
 */
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <SFML/Graphics.h>
-#include <SFML/Window.h>
 #include "../include/my.h"
 
-int reload_world(my_idt1 *world, char *filepath, sfBool isReloadKeyPressed)
+int reload_world(my_idt1 *world, char *filepath, bool isReloadKeyPressed)
 {
     if (isReloadKeyPressed && !world->no_spam_key) {
         world->no_spam_key = 1;

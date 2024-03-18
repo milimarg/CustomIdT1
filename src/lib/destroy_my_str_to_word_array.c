@@ -5,7 +5,7 @@
 ** destroy_my_str_to_word_array.c
 */
 
-#include <stdlib.h>
+#include "../../include/my.h"
 
 void destroy_my_str_to_word_array(char **str)
 {

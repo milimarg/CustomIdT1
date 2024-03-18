@@ -5,9 +5,6 @@
 ** move_player_body.c
 */
 
-#include <SFML/Graphics.h>
-#include <SFML/Window.h>
-#include <SFML/System.h>
 #include "../../include/my.h"
 
 void move_front(my_idt1 *world, id_Vec2 *delta)

@@ -5,9 +5,6 @@
 ** move_player_view.c
 */
 
-#include <SFML/Graphics.h>
-#include <SFML/Window.h>
-#include <SFML/System.h>
 #include "../../include/my.h"
 
 void go_up(my_idt1 *world, id_Vec2 *delta __attribute_maybe_unused__)

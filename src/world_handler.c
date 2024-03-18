@@ -5,12 +5,6 @@
 ** world_handler.c
 */
 
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
-#include <SFML/Graphics.h>
-#include <SFML/Window.h>
-#include <SFML/System.h>
 #include "../include/my.h"
 
 static void set_map_infos(my_idt1 *world, map_type type, int pixel_scale,
@@ -36,7 +30,6 @@ my_idt1 *create_world(char *filepath, map_type type, int pixel_scale,
         world->pre_sin[i] = sin(deg_to_rad(i));
     }
     world->player = (my_idt1_player){0, 0, 30, 0, 0};
-    world->points = sfVertexArray_create();
     world->no_spam_key = 0;
     world->filepath = filepath;
     set_map_infos(world, type, pixel_scale, win_size);

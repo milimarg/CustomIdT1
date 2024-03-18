@@ -5,8 +5,6 @@
 ** move_player.c
 */
 
-#include <SFML/Graphics.h>
-#include <SFML/Window.h>
 #include "../../include/my.h"
 
 void move_player(my_idt1 *world, bool key_actions[KEY_ACTIONS_NUMBER])

@@ -5,9 +5,6 @@
 ** points.c
 */
 
-#include <SFML/Graphics.h>
-#include <SFML/Window.h>
-#include <SFML/System.h>
 #include "../../include/my.h"
 
 void set_some_points_values(id_Vec2 *one_two, my_idt1 *world,
