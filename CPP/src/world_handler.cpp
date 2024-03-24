@@ -5,7 +5,6 @@
 ** world_handler.c
 */
 
-#include <iostream>
 #include "../include/my.hpp"
 
 static void set_map_infos(my_idt1 *world, map_type type, int pixel_scale,
@@ -41,9 +40,8 @@ my_idt1 *create_world(char *filepath, map_type type, int pixel_scale,
 void destroy_world(my_idt1 *world)
 {
     for (int i = 0; i < world->sectors_nb; i++) {
-        free(world->sectors[i]->walls);
-        free(world->sectors[i]->points_surface);
-        free(world->sectors[i]);
+        free(world->sectors[i].walls);
+        free(world->sectors[i].points_surface);
     }
     delete world;
 }
@@ -54,12 +52,12 @@ void display_world(my_idt1 *world)
 
     sort_sectors(world);
     for (int s = 0; s < world->sectors_nb; s++) {
-        world->sectors[s]->d = 0;
+        world->sectors[s].d = 0;
         set_surface_type(world, s);
         for (int loop = 0; loop < 2; loop++) {
             draw_one_wall(world, loop, s, wpos);
-            world->sectors[s]->d /= world->sectors[s]->walls_nb;
-            world->sectors[s]->surface *= -1;
+            world->sectors[s].d /= world->sectors[s].walls_nb;
+            world->sectors[s].surface *= -1;
         }
     }
 }

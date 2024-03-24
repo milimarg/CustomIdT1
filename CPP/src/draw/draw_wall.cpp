@@ -23,13 +23,13 @@ id_Color color)
     int s = s_and_x[0];
     int x = s_and_x[1];
 
-    if (world->sectors[s]->surface == BOTTOM * -1) {
-        for (int y = world->sectors[s]->points_surface[x]; y < y_array[0]; y++)
-            draw_point(x, y, world->sectors[s]->bottom, world);
+    if (world->sectors[s].surface == BOTTOM * -1) {
+        for (int y = world->sectors[s].points_surface[x]; y < y_array[0]; y++)
+            draw_point(x, y, world->sectors[s].bottom, world);
     }
-    if (world->sectors[s]->surface == TOP * -1) {
-        for (int y = y_array[1]; y < world->sectors[s]->points_surface[x]; y++)
-            draw_point(x, y, world->sectors[s]->top, world);
+    if (world->sectors[s].surface == TOP * -1) {
+        for (int y = y_array[1]; y < world->sectors[s].points_surface[x]; y++)
+            draw_point(x, y, world->sectors[s].top, world);
     }
     for (int y = y_array[0]; y < y_array[1]; y++) {
         draw_point(x, y, color, world);
@@ -41,12 +41,12 @@ static int skip_surface_bottom_top(my_idt1 *world, int s_and_x[], int y[2])
     int s = s_and_x[0];
     int x = s_and_x[1];
 
-    if (world->sectors[s]->surface == BOTTOM) {
-        world->sectors[s]->points_surface[x] = y[0];
+    if (world->sectors[s].surface == BOTTOM) {
+        world->sectors[s].points_surface[x] = y[0];
         return (1);
     }
-    if (world->sectors[s]->surface == TOP) {
-        world->sectors[s]->points_surface[x] = y[1];
+    if (world->sectors[s].surface == TOP) {
+        world->sectors[s].points_surface[x] = y[1];
         return (1);
     }
     return (0);
@@ -80,8 +80,8 @@ void draw_one_wall(my_idt1 *world, int l, int s, std::array<id_Vec3, 4> &wpos)
     std::array<id_Vec2, 2> one_two;
     coordinates_wall wall;
 
-    for (int w = 0; w < world->sectors[s]->walls_nb; w++) {
-        set_some_points_values(one_two, world, &world->sectors[s]->walls[w], l);
+    for (int w = 0; w < world->sectors[s].walls_nb; w++) {
+        set_some_points_values(one_two, world, &world->sectors[s].walls[w], l);
         set_wpos_values(wpos, one_two, s, world);
         if (wpos[0].y < 1 && wpos[1].y < 1)
             continue;
@@ -94,6 +94,6 @@ void draw_one_wall(my_idt1 *world, int l, int s, std::array<id_Vec3, 4> &wpos)
             clip_behind_player(&wpos[3], &wpos[2]);
         }
         wall = set_walls_pos_depending_of_window_position(wpos, world);
-        draw_wall(&wall, world->sectors[s]->walls[w].color, s, world);
+        draw_wall(&wall, world->sectors[s].walls[w].color, s, world);
     }
 }

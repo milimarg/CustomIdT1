@@ -27,7 +27,7 @@ OBJ	=	$(SRC:.cpp=.o)
 
 NAME	=	idt1
 
-CPPFLAGS	=	-Wall -Wextra -fPIC
+CPPFLAGS	=	-Wall -Wextra
 
 GRAPHICS_FLAGS	=	-lsfml-graphics -lsfml-window -lsfml-system
 

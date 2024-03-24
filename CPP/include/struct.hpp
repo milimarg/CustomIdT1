@@ -96,7 +96,7 @@ typedef struct my_idt1 {
     char *filepath;
     int no_spam_key;
     int sectors_nb;
-    std::vector<sectors_t *> sectors;
+    std::vector<sectors_t> sectors;
     unsigned int points_len;
     std::unordered_map<std::pair<int, int>, id_vertex> points;
     my_idt1_player player;

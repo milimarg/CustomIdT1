@@ -21,8 +21,8 @@ void get_line_info(int index, my_idt1 *world, char *buffer)
     if (index == 0) {
         world->sectors_nb = atoi(buffer);
         for (int i = 0; i < world->sectors_nb; i++) {
-            world->sectors.push_back((sectors_t *)malloc(sizeof(sectors_t)));
-            world->sectors[i]->points_surface = (int *)malloc(sizeof(int) *
+            world->sectors.push_back(sectors_t());
+            world->sectors[i].points_surface = (int *)malloc(sizeof(int) *
             world->win_size.x);
         }
     } else {

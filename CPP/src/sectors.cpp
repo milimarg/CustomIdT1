@@ -23,19 +23,19 @@ static id_rect *set_values_for_rectangle(int *walls_nb, id_Vec3 *size, id_Vec3 *
     return (rect);
 }
 
-static void fill_walls_info(sectors_t *sector, id_rect *rect,
+static void fill_walls_info(sectors_t &sector, id_rect *rect,
 id_Color wall_color[2], int walls_nb)
 {
     for (int w = 0; w < walls_nb; w++) {
-        sector->walls[w].point1.x = rect[w].left;
-        sector->walls[w].point1.y = rect[w].top;
-        sector->walls[w].point2.x = rect[w].width;
-        sector->walls[w].point2.y = rect[w].height;
-        sector->walls[w].color = wall_color[(w % 2)];
+        sector.walls[w].point1.x = rect[w].left;
+        sector.walls[w].point1.y = rect[w].top;
+        sector.walls[w].point2.x = rect[w].width;
+        sector.walls[w].point2.y = rect[w].height;
+        sector.walls[w].color = wall_color[(w % 2)];
     }
 }
 
-void fill_sector(sectors_t *sector, shape_type shape, id_Vec3 *pos, id_Vec3 *size)
+void fill_sector(sectors_t &sector, shape_type shape, id_Vec3 *pos, id_Vec3 *size)
 {
     int walls_nb = 0;
     id_rect *rect = NULL;
@@ -48,12 +48,12 @@ void fill_sector(sectors_t *sector, shape_type shape, id_Vec3 *pos, id_Vec3 *siz
     if (walls_nb == 0 || rect == NULL) {
         write(2, "walls number can't be null\n", 27);
     }
-    sector->walls_nb = walls_nb;
-    sector->walls = (wall_t *)malloc(sizeof(wall_t) * walls_nb);
-    sector->z1 = pos->z;
-    sector->z2 = size->z - pos->z;
-    sector->top = top_color;
-    sector->bottom = bottom_color;
+    sector.walls_nb = walls_nb;
+    sector.walls = (wall_t *)malloc(sizeof(wall_t) * walls_nb);
+    sector.z1 = pos->z;
+    sector.z2 = size->z - pos->z;
+    sector.top = top_color;
+    sector.bottom = bottom_color;
     fill_walls_info(sector, rect, wall_color, walls_nb);
     free(rect);
 }

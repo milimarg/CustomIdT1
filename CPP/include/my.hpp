@@ -48,7 +48,7 @@ void lean_to_ground(my_idt1 *world, id_Vec2 *delta);
 void lean_to_sky(my_idt1 *world, id_Vec2 *delta);
 void get_line_info(int index, my_idt1 *world, char *buffer);
 int parse_file(my_idt1 *world);
-void fill_sector(sectors_t *sector, shape_type shape, id_Vec3 *pos, id_Vec3 *size);
+void fill_sector(sectors_t &sector, shape_type shape, id_Vec3 *pos, id_Vec3 *size);
 void strafe_left(my_idt1 *world, id_Vec2 *delta);
 void strafe_right(my_idt1 *world, id_Vec2 *delta);
 void display_world(my_idt1 *world);
