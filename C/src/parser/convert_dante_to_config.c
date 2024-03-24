@@ -50,7 +50,7 @@ int *walls_sectors_nb, int fd)
 
     if (!a) {
         a = 1;
-        texture_size_sq = pow(texture_size, 2);
+        texture_size_sq = texture_size * texture_size;
     }
     if (char_to_check == 'X') {
         write(fd, "rectangle ", 10);

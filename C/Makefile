@@ -26,12 +26,12 @@ OBJ	=	$(SRC:.c=.o)
 
 NAME	=	libidt1.so
 
-CFLAGS	=	-Wall -Wextra -fPIC
+CFLAGS	=	-Wall -Wextra
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	gcc -shared -o $(NAME) $(OBJ) -lm -g
+	gcc -shared -o $(NAME) $(OBJ)
 
 clean:
 	rm -f $(OBJ)

@@ -53,7 +53,7 @@ int main(void)
     char *filepath = "./config_files/example_config";
     sfEvent event = {0};
     get_functions(handle);
-    my_idt1 *world = create_world(filepath, RAW_CONFIG, 10, (id_Vec2){192, 108});
+    my_idt1 *world = create_world(filepath, RAW_CONFIG, 5, (id_Vec2){384, 216});
     bool actions[KEY_ACTIONS_NUMBER] = {false};
     sfRenderWindow *window = NULL;
     sfVertexArray *array = sfVertexArray_create();
