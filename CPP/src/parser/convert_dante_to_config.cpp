@@ -85,17 +85,15 @@ void convert_dante_to_config(char *filepath)
     int fd = 0;
     struct stat st;
     id_Vec2 map_size;
-    char *buffer = NULL;
+    char buffer[131072] = {0};
     std::array<int, 2> walls_sectors_nb = {0};
 
     error_handling_file(filepath, &st);
-    buffer = (char *)malloc(sizeof(char) * (st.st_size + 1));
     fd = open(filepath, O_RDONLY);
     if (fd == -1) {
         write(2, "can't open dante file (open)\n", 29);
     }
-    read(fd, buffer, st.st_size);
-    buffer[st.st_size] = 0;
+    read(fd, buffer, 131071);
     close(fd);
     get_map_size(&fd, buffer, &map_size, walls_sectors_nb);
     print_config_lines(&map_size, buffer, fd, walls_sectors_nb);

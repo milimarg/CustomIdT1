@@ -72,7 +72,7 @@ typedef struct sectors_s {
     int d;
     id_Color top;
     id_Color bottom;
-    int *points_surface;
+    std::unordered_map<int, int> points_surface;
     int surface;
     std::vector<wall_t> walls;
 } sectors_t;

@@ -5,8 +5,7 @@
 ## Makefile
 ##
 
-SRC	=	src/lib/my_str_to_word_array.cpp \
-		src/lib/lib.cpp \
+SRC	=	src/lib/lib.cpp \
         src/lib/utils.cpp \
 		src/draw/draw.cpp \
 		src/draw/draw_wall.cpp \

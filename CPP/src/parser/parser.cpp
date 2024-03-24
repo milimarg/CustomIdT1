@@ -5,31 +5,30 @@
 ** parser.c
 */
 
+#include <sstream>
 #include "../../include/my.hpp"
-
-static void check_parameters_are_right(char **output)
-{
-    if (my_array_len(output) != 7) {
-        write(2, "polyhedron parameters are wrong\n", 32);
-    }
-}
 
 void get_line_info(int index, my_idt1 *world, char *buffer)
 {
-    char **output = NULL;
+    std::stringstream stream;
+    int pos_x = 0;
+    int pos_y = 0;
+    int pos_z = 0;
+    int size_x = 0;
+    int size_y = 0;
+    int size_z = 0;
+    std::string trash;
 
     if (index == 0) {
         world->sectors_nb = atoi(buffer);
         for (int i = 0; i < world->sectors_nb; i++) {
             world->sectors.push_back(sectors_t());
-            world->sectors[i].points_surface = (int *)malloc(sizeof(int) *
-            world->win_size.x);
         }
     } else {
-        output = my_str_to_word_array(buffer);
-        check_parameters_are_right(output);
-        id_Vec3 pos = {atoi(output[1]), atoi(output[2]), atoi(output[3])};
-        id_Vec3 size = {atoi(output[4]), atoi(output[5]), atoi(output[6])};
+        stream << buffer;
+        stream >> trash >> pos_x >> pos_y >> pos_z >> size_x >> size_y >> size_z;
+        id_Vec3 pos = {pos_x, pos_y, pos_z};
+        id_Vec3 size = {size_x, size_y, size_z};
         fill_sector(world->sectors[index - 1], RECTANGLE, &pos, &size);
     }
 }
