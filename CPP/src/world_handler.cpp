@@ -40,7 +40,6 @@ my_idt1 *create_world(char *filepath, map_type type, int pixel_scale,
 void destroy_world(my_idt1 *world)
 {
     for (int i = 0; i < world->sectors_nb; i++) {
-        free(world->sectors[i].walls);
         free(world->sectors[i].points_surface);
     }
     delete world;

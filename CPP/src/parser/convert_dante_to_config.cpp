@@ -18,7 +18,7 @@ static void error_handling_file(char *filepath, struct stat *st)
 }
 
 static void get_map_size(int *fd, char *buffer, id_Vec2 *map_size,
-int *walls_sectors_nb)
+std::array<int, 2> &walls_sectors_nb)
 {
     int count_width = 1;
 
@@ -34,13 +34,13 @@ int *walls_sectors_nb)
             count_width = 0;
         }
         if (buffer[i] == 'X')
-            walls_sectors_nb[0]++;
+            walls_sectors_nb[0] += 1;
     }
     map_size->y++;
 }
 
 static void print_config_wall(char char_to_check, id_Vec2 *index,
-int *walls_sectors_nb, int fd)
+std::array<int, 2> &walls_sectors_nb, int fd)
 {
     static int a = 0;
     static int texture_size = 8;
@@ -65,7 +65,7 @@ int *walls_sectors_nb, int fd)
 }
 
 static void print_config_lines(id_Vec2 *map_size, char *buffer, int fd,
-int *walls_sectors_nb)
+std::array<int, 2> &walls_sectors_nb)
 {
     int pos = 0;
 
@@ -86,9 +86,8 @@ void convert_dante_to_config(char *filepath)
     struct stat st;
     id_Vec2 map_size;
     char *buffer = NULL;
-    int *walls_sectors_nb = (int *)malloc(sizeof(int) * 2);
+    std::array<int, 2> walls_sectors_nb = {0};
 
-    memset(walls_sectors_nb, 0, 2);
     error_handling_file(filepath, &st);
     buffer = (char *)malloc(sizeof(char) * (st.st_size + 1));
     fd = open(filepath, O_RDONLY);

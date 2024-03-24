@@ -74,7 +74,7 @@ typedef struct sectors_s {
     id_Color bottom;
     int *points_surface;
     int surface;
-    wall_t *walls;
+    std::vector<wall_t> walls;
 } sectors_t;
 
 typedef enum {
