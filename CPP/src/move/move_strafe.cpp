@@ -5,7 +5,7 @@
 ** move_strafe.c
 */
 
-#include "../../include/my.h"
+#include "../../include/my.hpp"
 
 void strafe_left(my_idt1 *world, id_Vec2 *delta)
 {

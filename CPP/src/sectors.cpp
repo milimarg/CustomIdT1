@@ -5,7 +5,7 @@
 ** sectors.c
 */
 
-#include "../include/my.h"
+#include "../include/my.hpp"
 
 static id_rect *set_values_for_rectangle(int *walls_nb, id_Vec3 *size, id_Vec3 *pos)
 {

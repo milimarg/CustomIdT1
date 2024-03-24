@@ -5,7 +5,7 @@
 ** utils.c
 */
 
-#include "../../include/my.h"
+#include "../../include/my.hpp"
 
 int fix_angle(int angle)
 {

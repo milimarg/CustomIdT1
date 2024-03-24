@@ -5,7 +5,7 @@
 ** lib.c
 */
 
-#include "../../include/my.h"
+#include "../../include/my.hpp"
 
 void my_put_nbr_fd(int nb, unsigned int fd)
 {

@@ -5,7 +5,7 @@
 ** draw_wall.c
 */
 
-#include "../../include/my.h"
+#include "../../include/my.hpp"
 
 static void update_wall_delimitations(coordinates_wall *wall,
 int *delta_x, my_idt1 *world)
@@ -13,8 +13,8 @@ int *delta_x, my_idt1 *world)
     *delta_x = (*delta_x == 0) ? 1 : *delta_x;
     wall->x1 = (wall->x1 < 1) ? 1 : wall->x1;
     wall->x2 = (wall->x2 < 1) ? 1 : wall->x2;
-    wall->x1 = min(world->win_size.x - 1, wall->x1);
-    wall->x2 = min(world->win_size.x - 1, wall->x2);
+    wall->x1 = std::min(world->win_size.x - 1, wall->x1);
+    wall->x2 = std::min(world->win_size.x - 1, wall->x2);
 }
 
 static void draw_surfaces(my_idt1 *world, int s_and_x[2], int y_array[2],
@@ -66,8 +66,8 @@ void draw_wall(coordinates_wall *wall, id_Color color, int s, my_idt1 *world)
         y[1] = delta_top * (x - voila + 0.5) / delta_x + wall->top1;
         y[0] = (y[0] < 1) ? 1 : y[0];
         y[1] = (y[1] < 1) ? 1 : y[1];
-        y[0] = min(world->win_size.y - 1, y[0]);
-        y[1] = min(world->win_size.y - 1, y[1]);
+        y[0] = std::min(world->win_size.y - 1, y[0]);
+        y[1] = std::min(world->win_size.y - 1, y[1]);
         int data[2] = {s, x};
         if (skip_surface_bottom_top(world, data, y))
             continue;
@@ -75,9 +75,9 @@ void draw_wall(coordinates_wall *wall, id_Color color, int s, my_idt1 *world)
     }
 }
 
-void draw_one_wall(my_idt1 *world, int l, int s, id_Vec3 *wpos)
+void draw_one_wall(my_idt1 *world, int l, int s, std::array<id_Vec3, 4> &wpos)
 {
-    id_Vec2 *one_two = (id_Vec2 *)malloc(sizeof(id_Vec2) * 2);
+    std::array<id_Vec2, 2> one_two;
     coordinates_wall wall;
 
     for (int w = 0; w < world->sectors[s]->walls_nb; w++) {
@@ -96,5 +96,4 @@ void draw_one_wall(my_idt1 *world, int l, int s, id_Vec3 *wpos)
         wall = set_walls_pos_depending_of_window_position(wpos, world);
         draw_wall(&wall, world->sectors[s]->walls[w].color, s, world);
     }
-    free(one_two);
 }

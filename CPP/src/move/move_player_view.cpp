@@ -5,7 +5,7 @@
 ** move_player_view.c
 */
 
-#include "../../include/my.h"
+#include "../../include/my.hpp"
 
 void go_up(my_idt1 *world, id_Vec2 *delta __attribute_maybe_unused__)
 {

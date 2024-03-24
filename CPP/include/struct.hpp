@@ -7,6 +7,10 @@
 #ifndef STRUCT_H_
     #define STRUCT_H_
     #include <stdbool.h>
+    #include <array>
+    #include <vector>
+    #include <unordered_map>
+    #include "Pair.hpp"
     #define KEY_ACTIONS_NUMBER 10
 
 /* CUSTOM DATA TYPES */
@@ -87,14 +91,14 @@ typedef struct my_idt1_player {
 } my_idt1_player;
 
 typedef struct my_idt1 {
-    double *pre_cos;
-    double *pre_sin;
+    std::array<double, 360> pre_cos;
+    std::array<double, 360> pre_sin;
     char *filepath;
     int no_spam_key;
     int sectors_nb;
-    sectors_t **sectors;
+    std::vector<sectors_t *> sectors;
     unsigned int points_len;
-    id_vertex *points;
+    std::unordered_map<std::pair<int, int>, id_vertex> points;
     my_idt1_player player;
     int pixel_scale;
     id_Vec2 win_size;

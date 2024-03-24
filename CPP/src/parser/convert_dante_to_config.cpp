@@ -5,7 +5,7 @@
 ** convert_dante_to_config.c
 */
 
-#include "../../include/my.h"
+#include "../../include/my.hpp"
 
 static void error_handling_file(char *filepath, struct stat *st)
 {

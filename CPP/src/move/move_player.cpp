@@ -6,7 +6,7 @@
 */
 
 #include <iostream>
-#include "../../include/my.h"
+#include "../../include/my.hpp"
 
 void move_player(my_idt1 *world, std::array<bool, KEY_ACTIONS_NUMBER> &key_actions)
 {

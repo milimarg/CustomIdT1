@@ -5,7 +5,7 @@
 ** parser.c
 */
 
-#include "../../include/my.h"
+#include "../../include/my.hpp"
 
 static void check_parameters_are_right(char **output)
 {
@@ -20,9 +20,8 @@ void get_line_info(int index, my_idt1 *world, char *buffer)
 
     if (index == 0) {
         world->sectors_nb = atoi(buffer);
-        world->sectors = (sectors_t **)malloc(sizeof(sectors_t *) * world->sectors_nb);
         for (int i = 0; i < world->sectors_nb; i++) {
-            world->sectors[i] = (sectors_t *)malloc(sizeof(sectors_t));
+            world->sectors.push_back((sectors_t *)malloc(sizeof(sectors_t)));
             world->sectors[i]->points_surface = (int *)malloc(sizeof(int) *
             world->win_size.x);
         }

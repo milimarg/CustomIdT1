@@ -5,7 +5,7 @@
 ** reload_world.c
 */
 
-#include "../include/my.h"
+#include "../include/my.hpp"
 
 int reload_world(my_idt1 *world, char *filepath, bool isReloadKeyPressed)
 {
@@ -16,7 +16,6 @@ int reload_world(my_idt1 *world, char *filepath, bool isReloadKeyPressed)
             free(world->sectors[i]->walls);
             free(world->sectors[i]);
         }
-        free(world->sectors);
         world->filepath = filepath;
         convert_dante_to_config(world->filepath);
         if (parse_file(world) == 1)

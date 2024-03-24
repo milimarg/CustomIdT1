@@ -8,7 +8,7 @@
 #include <iostream>
 #include <dlfcn.h>
 #include <SFML/Graphics.hpp>
-#include "../CPP/include/my.h"
+#include "../CPP/include/my.hpp"
 
 static sf::Keyboard::Key keys[KEY_ACTIONS_NUMBER] = {
         sf::Keyboard::W,         // move front
@@ -31,7 +31,7 @@ int main(void)
     my_idt1 *world = create_world((char *)filepath, RAW_CONFIG, 5, (id_Vec2){384, 216});
     std::array<bool, KEY_ACTIONS_NUMBER> actions = {false};
 
-    if (world == NULL)
+    if (world == nullptr)
         return 1;
     sf::VideoMode mode(world->opengl_size.x, world->opengl_size.y);
     sf::RenderWindow window(mode, "it's doomsday++");
@@ -55,20 +55,21 @@ int main(void)
         move_player(world, actions);
         display_world(world);
 
-        for (int y = 0; y < world->win_size.y; y++) {
-            for (int x = 0; x < world->win_size.x; x++) {
-                const id_vertex v = world->points[x * world->win_size.x + y];
-                const int final_x = x * world->pixel_scale;
-                const int final_y = y * world->pixel_scale;
-                vertexArray.append(sf::Vertex(sf::Vector2f(final_x, final_y),
-                                              sf::Color(v.color.r, v.color.g, v.color.b)));
-                vertexArray.append(sf::Vertex(sf::Vector2f(final_x + world->pixel_scale, final_y),
-                                              sf::Color(v.color.r, v.color.g, v.color.b)));
-                vertexArray.append(sf::Vertex(sf::Vector2f(final_x + world->pixel_scale, final_y + world->pixel_scale),
-                                              sf::Color(v.color.r, v.color.g, v.color.b)));
-                vertexArray.append(sf::Vertex(sf::Vector2f(final_x, final_y + world->pixel_scale),
-                                              sf::Color(v.color.r, v.color.g, v.color.b)));
-            }
+        for (auto &point : world->points) {
+            const int x = point.first.first;
+            const int y = point.first.second;
+            const id_vertex v = point.second;
+
+            const int final_x = x * world->pixel_scale;
+            const int final_y = y * world->pixel_scale;
+            vertexArray.append(sf::Vertex(sf::Vector2f(final_x, final_y),
+                                          sf::Color(v.color.r, v.color.g, v.color.b)));
+            vertexArray.append(sf::Vertex(sf::Vector2f(final_x + world->pixel_scale, final_y),
+                                          sf::Color(v.color.r, v.color.g, v.color.b)));
+            vertexArray.append(sf::Vertex(sf::Vector2f(final_x + world->pixel_scale, final_y + world->pixel_scale),
+                                          sf::Color(v.color.r, v.color.g, v.color.b)));
+            vertexArray.append(sf::Vertex(sf::Vector2f(final_x, final_y + world->pixel_scale),
+                                          sf::Color(v.color.r, v.color.g, v.color.b)));
         }
 
         window.draw(vertexArray);

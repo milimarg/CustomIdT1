@@ -5,7 +5,7 @@
 ** walls.c
 */
 
-#include "../include/my.h"
+#include "../include/my.hpp"
 
 void set_surface_type(my_idt1 *world, int s)
 {
@@ -18,7 +18,7 @@ void set_surface_type(my_idt1 *world, int s)
     }
 }
 
-void set_wpos_values(id_Vec3 *wpos, id_Vec2 *one_two,
+void set_wpos_values(std::array<id_Vec3, 4> &wpos, std::array<id_Vec2, 2> &one_two,
 int s, my_idt1 *world)
 {
     float current_cos = world->pre_cos[world->player.angle];
