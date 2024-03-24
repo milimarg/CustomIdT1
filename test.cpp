@@ -55,7 +55,7 @@ int main(void)
     sf::Event event;
     sf::VertexArray vertexArray;
     get_functions(handle);
-    my_idt1 *world = create_world((char *)filepath, RAW_CONFIG, 10, (id_Vec2){192, 108});
+    my_idt1 *world = create_world((char *)filepath, RAW_CONFIG, 1, (id_Vec2){192, 108});
     bool actions[KEY_ACTIONS_NUMBER] = {false};
 
     if (world == NULL)

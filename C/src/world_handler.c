@@ -17,6 +17,8 @@ static void set_map_infos(my_idt1 *world, map_type type, int pixel_scale,
     world->type = type;
     if (world->type == DANTE)
         convert_dante_to_config(world->filepath);
+    world->points_len = world->win_size.x * (world->win_size.x - 1) + world->win_size.y;
+    world->points = malloc(sizeof(id_vertex) * world->points_len);
 }
 
 my_idt1 *create_world(char *filepath, map_type type, int pixel_scale,
@@ -48,6 +50,7 @@ void destroy_world(my_idt1 *world)
     free(world->sectors);
     free(world->pre_cos);
     free(world->pre_sin);
+    free(world->points);
     free(world);
 }
 

@@ -41,7 +41,7 @@ void fill_sector(sectors_t *sector, shape_type shape, id_Vec3 *pos, id_Vec3 *siz
     id_rect *rect = NULL;
     id_Color top_color = {220, 220, 220, 255};
     id_Color bottom_color = {112, 128, 144, 255};
-    id_Color wall_color[2] = {{105, 105, 105, 255}, {211, 211, 211, 255}};
+    id_Color wall_color[2] = {{255, 0, 77, 255}, {0, 135, 81, 255}};
 
     if (shape == RECTANGLE)
         rect = set_values_for_rectangle(&walls_nb, size, pos);

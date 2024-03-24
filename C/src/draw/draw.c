@@ -9,7 +9,7 @@
 
 void clear_points(my_idt1 *world)
 {
-    for (size_t i = 0; i < sizeof(world->points) / sizeof(world->points[0]); i++) {
+    for (size_t i = 0; i < world->points_len; i++) {
         world->points[i] = (id_vertex){0};
     }
 }

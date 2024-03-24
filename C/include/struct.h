@@ -8,7 +8,6 @@
     #define STRUCT_H_
     #include <stdbool.h>
     #define KEY_ACTIONS_NUMBER 10
-    #define POINTS_NUMBER (192 * 191) + 108
 
 /* CUSTOM DATA TYPES */
 
@@ -30,8 +29,7 @@ typedef struct {
     unsigned char a;
 } id_Color;
 
-typedef struct
-{
+typedef struct {
     int left;
     int top;
     int width;
@@ -95,7 +93,8 @@ typedef struct my_idt1 {
     int no_spam_key;
     int sectors_nb;
     sectors_t **sectors;
-    id_vertex points[POINTS_NUMBER]; // TODO: screen size
+    unsigned int points_len;
+    id_vertex *points;
     my_idt1_player player;
     int pixel_scale;
     id_Vec2 win_size;

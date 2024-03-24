@@ -31,7 +31,7 @@ CFLAGS	=	-Wall -Wextra -fPIC
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	gcc -shared -fPIC -o $(NAME) $(OBJ) -lGL -lGLU -lm
+	gcc -shared -o $(NAME) $(OBJ) -lm -g
 
 clean:
 	rm -f $(OBJ)
