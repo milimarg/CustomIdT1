@@ -2,13 +2,16 @@
 
 Prototype of Id Tech 1 engine: move around in a pseudo-3D world, using x, y and z axis. <br>
 Create a world more easily using a config file, an example is available below. <br>
-The rendering is made using the CSFML library and a bit of OpenGL.
+The rendering is made up using Painter's algorithm. The graphics library is your choice thanks to a .so file.
 
 ## Compilation
 
 ```shell
-make -C ./CustomIdT1/
-gcc main.c -L./CustomIdT1/ -lidt1 -lcsfml-graphics -lcsfml-window -lcsfml-system -lGL -lGLU -lm
+make -C ./C # C Version
+gcc test.c -lcsfml-graphics -lcsfml-window -lcsfml-system
+# or
+make -C ./CPP # C++ Version
+g++ test.cpp -lsfml-graphics -lsfml-window -lsfml-system
 ```
 
 ## Config file

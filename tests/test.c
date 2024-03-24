@@ -7,7 +7,7 @@
 
 #include <dlfcn.h>
 #include <SFML/Graphics.h>
-#include "C/include/struct.h"
+#include "../C/include/struct.h"
 
 typedef my_idt1 *(*create_world_function)(char *filepath, map_type type, int pixel_scale,
     id_Vec2 win_size);
