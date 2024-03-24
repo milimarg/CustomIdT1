@@ -8,10 +8,9 @@ The rendering is made up using Painter's algorithm. The graphics library is your
 
 ```shell
 make -C ./C # C Version
-gcc tests/test.c -lcsfml-graphics -lcsfml-window -lcsfml-system
+gcc tests/example.c -lcsfml-graphics -lcsfml-window -lcsfml-system
 # or
-make -C ./CPP # C++ Version
-g++ tests/test.cpp -lsfml-graphics -lsfml-window -lsfml-system
+make -C ./CPP # C++ Version, bin path is './CPP/idt1'
 ```
 
 ## Config file
