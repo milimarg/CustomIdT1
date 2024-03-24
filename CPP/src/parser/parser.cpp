@@ -8,7 +8,7 @@
 #include <sstream>
 #include "../../include/my.hpp"
 
-void get_line_info(int index, my_idt1 *world, char *buffer)
+void get_line_info(int index, my_idt1 &world, char *buffer)
 {
     std::stringstream stream;
     int pos_x = 0;
@@ -20,28 +20,28 @@ void get_line_info(int index, my_idt1 *world, char *buffer)
     std::string trash;
 
     if (index == 0) {
-        world->sectors_nb = atoi(buffer);
-        for (int i = 0; i < world->sectors_nb; i++) {
-            world->sectors.push_back(sectors_t());
+        world.sectors_nb = atoi(buffer);
+        for (int i = 0; i < world.sectors_nb; i++) {
+            world.sectors.push_back(sectors_t());
         }
     } else {
         stream << buffer;
         stream >> trash >> pos_x >> pos_y >> pos_z >> size_x >> size_y >> size_z;
         id_Vec3 pos = {pos_x, pos_y, pos_z};
         id_Vec3 size = {size_x, size_y, size_z};
-        fill_sector(world->sectors[index - 1], RECTANGLE, &pos, &size);
+        fill_sector(world.sectors[index - 1], RECTANGLE, &pos, &size);
     }
 }
 
-int parse_file(my_idt1 *world)
+int parse_file(my_idt1 &world)
 {
     FILE *fd = NULL;
     char *buffer = NULL;
     size_t s = 0;
     int index = 0;
-    const char *types[] = {world->filepath, "3d_config"};
+    const char *types[] = {world.filepath, "3d_config"};
 
-    fd = fopen(types[world->type], "r");
+    fd = fopen(types[world.type], "r");
     if (fd == NULL) {
         write(2, "fd returns NULL\n", 16);
         return 1;

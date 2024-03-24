@@ -5,8 +5,8 @@
 ## Makefile
 ##
 
-SRC	=	src/lib/lib.cpp \
-        src/lib/utils.cpp \
+SRC	=	src/library_utils/lib.cpp \
+        src/library_utils/utils.cpp \
 		src/draw/draw.cpp \
 		src/draw/draw_wall.cpp \
 		src/draw/points.cpp \

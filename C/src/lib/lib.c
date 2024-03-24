@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2023
 ** doom
 ** File description:
-** lib.c
+** library_utils.c
 */
 
 #include "../../include/my.h"

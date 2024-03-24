@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2023
 ** prototype-raycasting-and-doom_old
 ** File description:
-** lib.h
+** library_utils.h
 */
 #ifndef LIB_H_
     #define LIB_H_

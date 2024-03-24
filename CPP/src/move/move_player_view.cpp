@@ -7,32 +7,32 @@
 
 #include "../../include/my.hpp"
 
-void go_up(my_idt1 *world, id_Vec2 *delta __attribute_maybe_unused__)
+void go_up(my_idt1 &world, id_Vec2 *delta __attribute_maybe_unused__)
 {
-    world->player.z++;
+    world.player.z++;
 }
 
-void go_down(my_idt1 *world, id_Vec2 *delta __attribute_maybe_unused__)
+void go_down(my_idt1 &world, id_Vec2 *delta __attribute_maybe_unused__)
 {
-    world->player.z--;
+    world.player.z--;
 }
 
-void lean_to_ground(my_idt1 *world, id_Vec2 *delta __attribute_maybe_unused__)
+void lean_to_ground(my_idt1 &world, id_Vec2 *delta __attribute_maybe_unused__)
 {
-    world->player.look++;
-    if (world->player.look < -10)
-        world->player.look = -10;
-    if (world->player.look > 10)
-        world->player.look = 10;
+    world.player.look++;
+    if (world.player.look < -10)
+        world.player.look = -10;
+    if (world.player.look > 10)
+        world.player.look = 10;
 }
 
-void lean_to_sky(my_idt1 *world, id_Vec2 *delta __attribute_maybe_unused__)
+void lean_to_sky(my_idt1 &world, id_Vec2 *delta __attribute_maybe_unused__)
 {
-    world->player.look--;
-    if (world->player.look < -10)
-        world->player.look = -10;
-    if (world->player.look > 10)
-        world->player.look = 10;
+    world.player.look--;
+    if (world.player.look < -10)
+        world.player.look = -10;
+    if (world.player.look > 10)
+        world.player.look = 10;
 }
 
 void clip_behind_player(id_Vec3 *one, id_Vec3 *two)

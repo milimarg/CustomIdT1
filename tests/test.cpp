@@ -28,7 +28,7 @@ int main(void)
     const char *filepath = "./config_files/example_config";
     sf::Event event;
     sf::VertexArray vertexArray;
-    my_idt1 *world = create_world((char *)filepath, RAW_CONFIG, 5, (id_Vec2){384, 216});
+    std::unique_ptr<my_idt1> world = create_world((char *)filepath, RAW_CONFIG, 5, (id_Vec2){384, 216});
     std::array<bool, KEY_ACTIONS_NUMBER> actions = {false};
 
     if (world == nullptr)
@@ -40,7 +40,7 @@ int main(void)
 
     while (window.isOpen()) {
         window.clear();
-        clear_points(world);
+        clear_points(*world);
         vertexArray.clear();
         vertexArray.setPrimitiveType(sf::PrimitiveType::Quads);
         while (window.pollEvent(event)) {
@@ -52,8 +52,8 @@ int main(void)
         for (int i = 0; i < KEY_ACTIONS_NUMBER; i++)
             actions[i] = sf::Keyboard::isKeyPressed(keys[i]);
 
-        move_player(world, actions);
-        display_world(world);
+        move_player(*world, actions);
+        display_world(*world);
 
         for (auto &point : world->points) {
             const int x = point.first.first;
@@ -75,9 +75,8 @@ int main(void)
         window.draw(vertexArray);
         window.display();
         bool pressed = sf::Keyboard::isKeyPressed(sf::Keyboard::R);
-        if (reload_world(world, (char *)filepath, pressed) == 1)
+        if (reload_world(*world, (char *)filepath, pressed) == 1)
             return 1;
     }
-    destroy_world(world);
     return (0);
 }

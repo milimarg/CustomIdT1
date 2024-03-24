@@ -7,12 +7,12 @@
 
 #include "../../include/my.hpp"
 
-void clear_points(my_idt1 *world)
+void clear_points(my_idt1 &world)
 {
-    world->points.clear();
+    world.points.clear();
 }
 
-void draw_point(int x, int y, id_Color color, my_idt1 *world)
+void draw_point(int x, int y, id_Color color, my_idt1 &world)
 {
-    world->points[{x, y}] = (id_vertex){.position = {x, y}, .color = color};
+    world.points[{x, y}] = (id_vertex){.position = {x, y}, .color = color};
 }
